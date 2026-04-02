@@ -10,6 +10,31 @@
 
 **Time Budget: 24 hours total**
 
+## Progress Summary (updated 2026-04-03)
+
+| Phase | Status | Completion |
+|---|---|---|
+| Phase 0 | Figma audit done, mock data partially populated | ~40% |
+| Phase 1 | Navigation, types, App.tsx wired — shared UI + feature types missing | ~75% |
+| Phase 2 | All 3 auth screens done (Splash, Welcome, Login) | ~90% |
+| Phase 3 | NOT STARTED — home screens/components directories are empty | 0% |
+| Phase 4 | NOT STARTED — session-result directories are empty | 0% |
+| Phase 5 | NOT STARTED — settings directory is empty | 0% |
+| Phase 6 | NOT STARTED | 0% |
+| Phase 7 | NOT STARTED | 0% |
+
+**Known issues to fix before continuing:**
+1. `login-screen.tsx:37` — hardcoded hex color `#1C1C1E`
+2. `use-login.ts` uses 6-digit OTP, plan specifies 4-digit — verify which matches Figma
+3. `root-navigator.tsx` missing SessionResult screen (types defined but not wired)
+4. `companies.json` only has 1 company (needs 6-8)
+5. `questions.json` only has 1 question (needs 8-12)
+6. `session-result.json` still has placeholder text
+7. `user.json` still has placeholder data
+8. Shared UI components (`button.tsx`, `text.tsx`) not created
+9. Feature types files for home, session-result, settings not created
+10. Welcome screen may be missing the tagline text
+
 | Phase | Block | Time |
 |---|---|---|
 | Phase 0 | Figma study + mock data population | 1.5h |
@@ -41,29 +66,29 @@ Open the Figma in dev mode before doing anything. Every color, spacing, font siz
 
 **Files:** None (research only)
 
-- [ ] **Step 1:** Open Figma link: `https://www.figma.com/design/8i6wNZ6dafxTh5Zl9jbgu3/Grapevine-Internship-Program?node-id=2-16244&p=f&m=dev`
-- [ ] **Step 2:** Enable Dev Mode (bottom-right toggle) to see exact px values, font weights, hex codes
-- [ ] **Step 3:** Screenshot or note the following for EVERY screen:
-  - Splash: logo size, positioning, background color, auto-navigate delay
-  - Welcome: brand text sizes, tagline, CTA button dimensions/colors, illustrated character positioning
-  - Login: heading text, input field heights/borders, OTP input box sizes (4 digits), submit button, back nav
-  - Home: header layout (logo left, notification + hamburger right), practice set card dimensions, question card layout (company logo size, name, question badge), START button styling, bottom tab bar icons
-  - Home Open State: bottom sheet snap points, question text layout, company info, duration badge, FEEDBACK button, AI VS AI button, social proof text styling
-  - Session Result: avatar section, question card in header, tab bar styling, Smart Summary bullet points, Key Moments timestamp layout, audio player bar
-  - Settings: profile avatar size/name/phone layout, CTA button, menu items layout, Log Out button
+- [x] **Step 1:** Open Figma link: `https://www.figma.com/design/8i6wNZ6dafxTh5Zl9jbgu3/Grapevine-Internship-Program?node-id=2-16244&p=f&m=dev`
+- [x] **Step 2:** Enable Dev Mode (bottom-right toggle) to see exact px values, font weights, hex codes
+- [x] **Step 3:** Screenshot or note the following for EVERY screen:
+   - Splash: logo size, positioning, background color, auto-navigate delay
+   - Welcome: brand text sizes, tagline, CTA button dimensions/colors, illustrated character positioning
+   - Login: heading text, input field heights/borders, OTP input box sizes (4 digits), submit button, back nav
+   - Home: header layout (logo left, notification + hamburger right), practice set card dimensions, question card layout (company logo size, name, question badge), START button styling, bottom tab bar icons
+   - Home Open State: bottom sheet snap points, question text layout, company info, duration badge, FEEDBACK button, AI VS AI button, social proof text styling
+   - Session Result: avatar section, question card in header, tab bar styling, Smart Summary bullet points, Key Moments timestamp layout, audio player bar
+   - Settings: profile avatar size/name/phone layout, CTA button, menu items layout, Log Out button
 
-- [ ] **Step 4:** Cross-reference Figma colors with `src/theme/colors.ts` palette tokens — map every Figma hex to a theme token
-- [ ] **Step 5:** Note all font sizes from Figma and map them to `src/theme/typography.ts` sizes
-- [ ] **Step 6:** Note all spacing values (padding, margin, gaps) from Figma and map them to `src/theme/spacing.ts` tokens
-- [ ] **Step 7:** Note all border-radius values used across screens
+- [x] **Step 4:** Cross-reference Figma colors with `src/theme/colors.ts` palette tokens — map every Figma hex to a theme token
+- [x] **Step 5:** Note all font sizes from Figma and map them to `src/theme/typography.ts` sizes
+- [x] **Step 6:** Note all spacing values (padding, margin, gaps) from Figma and map them to `src/theme/spacing.ts` tokens
+- [x] **Step 7:** Note all border-radius values used across screens
 
 ### Task 0.2: Populate Mock Data — companies.json
 
 **Files:**
 - Modify: `src/mock-data/companies.json`
 
-- [ ] **Step 1:** Fill with 6-8 Indian tech companies visible in the Figma (PhonePe, Amazon, Google, Flipkart, Microsoft, Swiggy, etc.)
-- [ ] **Step 2:** Each entry needs: `id`, `name`, `logoUrl` (use Wikipedia/Wikimedia CDN URLs for company logos — they're reliable and free)
+- [ ] **Step 1:** Fill with 6-8 Indian tech companies visible in the Figma (PhonePe, Amazon, Google, Flipkart, Microsoft, Swiggy, etc.) — **PARTIAL: only PhonePe exists**
+- [x] **Step 2:** Each entry needs: `id`, `name`, `logoUrl` (use Wikipedia/Wikimedia CDN URLs for company logos — they're reliable and free)
 - [ ] **Step 3:** Ensure company logos are SVG or high-quality PNG URLs that will load in expo-image
 
 ### Task 0.3: Populate Mock Data — questions.json
@@ -71,10 +96,10 @@ Open the Figma in dev mode before doing anything. Every color, spacing, font siz
 **Files:**
 - Modify: `src/mock-data/questions.json`
 
-- [ ] **Step 1:** Create 8-12 realistic interview questions — match the EXACT text visible in the Figma for at least the first 2-3 questions
-- [ ] **Step 2:** Each entry needs: `id`, `questionNumber`, `companyId`, `companyName`, `companyLogoUrl`, `text`, `durationMinutes`, `completedTodayCount`
+- [ ] **Step 1:** Create 8-12 realistic interview questions — match the EXACT text visible in the Figma for at least the first 2-3 questions — **PARTIAL: only 1 question exists**
+- [x] **Step 2:** Each entry needs: `id`, `questionNumber`, `companyId`, `companyName`, `companyLogoUrl`, `text`, `durationMinutes`, `completedTodayCount`
 - [ ] **Step 3:** Distribute questions across multiple companies (not all from one company)
-- [ ] **Step 4:** Match the first question exactly to the Figma: "API latency is variable & app is sluggish. How do you design UI safely?" for PhonePe
+- [x] **Step 4:** Match the first question exactly to the Figma: "API latency is variable & app is sluggish. How do you design UI safely?" for PhonePe
 - [ ] **Step 5:** Use realistic `completedTodayCount` numbers (1000-5000 range)
 
 ### Task 0.4: Populate Mock Data — session-result.json
@@ -82,10 +107,10 @@ Open the Figma in dev mode before doing anything. Every color, spacing, font siz
 **Files:**
 - Modify: `src/mock-data/session-result.json`
 
-- [ ] **Step 1:** Fill `smartSummary.whatWorkedWell` with 3-5 bullet points matching Figma text (look at the Feedback screen)
-- [ ] **Step 2:** Fill `smartSummary.overallTakeaways` with 3-5 bullet points matching Figma text
-- [ ] **Step 3:** Fill `keyMoments` with 5-8 timestamped entries matching the Figma Highlights screen — note the exact timestamps and descriptions
-- [ ] **Step 4:** Set `audioDurationSeconds` to match the Figma audio player (likely ~312 seconds / 5:12)
+- [ ] **Step 1:** Fill `smartSummary.whatWorkedWell` with 3-5 bullet points matching Figma text (look at the Feedback screen) — **PLACEHOLDER: still has generic text**
+- [ ] **Step 2:** Fill `smartSummary.overallTakeaways` with 3-5 bullet points matching Figma text — **PLACEHOLDER: still has generic text**
+- [ ] **Step 3:** Fill `keyMoments` with 5-8 timestamped entries matching the Figma Highlights screen — note the exact timestamps and descriptions — **PLACEHOLDER: only 1 entry**
+- [ ] **Step 4:** Set `audioDurationSeconds` to match the Figma audio player (likely ~312 seconds / 5:12) — **DONE: set to 312**
 - [ ] **Step 5:** Ensure each key moment has correct `type` ("positive" or "negative") — green/red indicators in Figma
 
 ### Task 0.5: Populate Mock Data — user.json
@@ -93,9 +118,9 @@ Open the Figma in dev mode before doing anything. Every color, spacing, font siz
 **Files:**
 - Modify: `src/mock-data/user.json`
 
-- [ ] **Step 1:** Fill with realistic user profile data matching the Figma Settings screen
-- [ ] **Step 2:** Use a real avatar URL (the existing pravatar.cc URL is fine, or match the Figma avatar)
-- [ ] **Step 3:** Use a realistic Indian phone number format (+91 XXXXX XXXXX)
+- [ ] **Step 1:** Fill with realistic user profile data matching the Figma Settings screen — **PLACEHOLDER: still has generic data**
+- [ ] **Step 2:** Use a real avatar URL (the existing pravatar.cc URL is fine, or match the Figma avatar) — **DONE: using pravatar.cc**
+- [ ] **Step 3:** Use a realistic Indian phone number format (+91 XXXXX XXXXX) — **DONE: has +91 format**
 - [ ] **Step 4:** Commit all mock data files
 
 ---
@@ -111,10 +136,10 @@ Everything else depends on this phase. Do it first and do it right.
 **Files:**
 - Create: `src/navigation/types.ts`
 
-- [ ] **Step 1:** Define `AuthStackParamList` with screens: Splash (undefined), Welcome (undefined), Login (undefined)
-- [ ] **Step 2:** Define `MainTabParamList` with tabs: Home (undefined), Settings (undefined), Store (undefined)
-- [ ] **Step 3:** Define `RootStackParamList` that combines auth stack and main tabs (Auth: Navigator type, Main: Navigator type)
-- [ ] **Step 4:** Export all type lists
+- [x] **Step 1:** Define `AuthStackParamList` with screens: Splash (undefined), Welcome (undefined), Login (undefined)
+- [x] **Step 2:** Define `MainTabParamList` with tabs: Home (undefined), Settings (undefined), Store (undefined)
+- [x] **Step 3:** Define `RootStackParamList` that combines auth stack and main tabs (Auth: Navigator type, Main: Navigator type) — also includes SessionResult
+- [x] **Step 4:** Export all type lists
 
 ### Task 1.2: Define All Feature Types
 
@@ -124,7 +149,7 @@ Everything else depends on this phase. Do it first and do it right.
 - Create: `src/features/session-result/types.ts`
 - Create: `src/features/settings/types.ts`
 
-- [ ] **Step 1:** In `auth/types.ts` — define interfaces for any auth-specific props (e.g., LoginScreen props if needed, OTP input props)
+- [x] **Step 1:** In `auth/types.ts` — define interfaces for any auth-specific props (e.g., LoginScreen props if needed, OTP input props)
 - [ ] **Step 2:** In `home/types.ts` — define `Question` interface (matching questions.json shape), `Company` interface (matching companies.json shape), `QuestionCardProps`, `QuestionBottomSheetProps`, `PracticeSetCardProps`
 - [ ] **Step 3:** In `session-result/types.ts` — define `SessionResult` interface, `KeyMoment` interface, `SmartSummary` interface, `SmartSummaryTabProps`, `KeyMomentsTabProps`
 - [ ] **Step 4:** In `settings/types.ts` — define `User` interface (matching user.json shape), `SettingsMenuItem` interface, `SettingsScreenProps`
@@ -139,38 +164,42 @@ Everything else depends on this phase. Do it first and do it right.
 - [ ] **Step 2:** Create `text.tsx` — a reusable Text component accepting: `children`, `variant` ("heading" | "subheading" | "body" | "caption" | "label"), `color` override, `weight` override, `style` override. Map variants to `typography.sizes` and `typography.fonts.inter.*`. Default color to `colors.textPrimary`.
 - [ ] **Step 3:** Ensure both components use `StyleSheet.create` with theme tokens, no inline styles, no hardcoded values
 
+> **NOTE:** Auth flow was built WITHOUT these shared components (uses inline styles + extracted style files in `auth/styles/`). Consider whether to create these now or skip.
+
+> **BUG:** `login-screen.tsx:37` has a hardcoded hex color `#1C1C1E` for the back button — should use theme token.
+
 ### Task 1.4: Create Auth Navigator
 
 **Files:**
 - Create: `src/navigation/auth-navigator.tsx`
 
-- [ ] **Step 1:** Import `createNativeStackNavigator` from `@react-navigation/native-stack`
-- [ ] **Step 2:** Import `AuthStackParamList` from `./types`
-- [ ] **Step 3:** Create stack with Splash, Welcome, Login screens (use placeholder components for now — just `View` with `Text`)
-- [ ] **Step 4:** Configure screen options: `headerShown: false` for all auth screens
-- [ ] **Step 5:** Export as `AuthNavigator`
+- [x] **Step 1:** Import `createNativeStackNavigator` from `@react-navigation/native-stack`
+- [x] **Step 2:** Import `AuthStackParamList` from `./types`
+- [x] **Step 3:** Create stack with Splash, Welcome, Login screens (use placeholder components for now — just `View` with `Text`)
+- [x] **Step 4:** Configure screen options: `headerShown: false` for all auth screens
+- [x] **Step 5:** Export as `AuthNavigator`
 
 ### Task 1.5: Create Main Navigator (Bottom Tabs)
 
 **Files:**
 - Create: `src/navigation/main-navigator.tsx`
 
-- [ ] **Step 1:** Import `createBottomTabNavigator` from `@react-navigation/bottom-tabs`
-- [ ] **Step 2:** Import `MainTabParamList` from `./types`
-- [ ] **Step 3:** Create tab navigator with Home, Settings, Store tabs (placeholder screens for now)
-- [ ] **Step 4:** Configure tab bar: icons from `@expo/vector-icons` (use Ionicons — check Figma for exact icon names: home outline, settings/gear outline, store/bag outline), active/inactive tint colors from theme (`colors.primary` for active, `colors.textSecondary` for inactive), tab bar style with border color from `colors.border`
-- [ ] **Step 5:** Export as `MainNavigator`
+- [x] **Step 1:** Import `createBottomTabNavigator` from `@react-navigation/bottom-tabs`
+- [x] **Step 2:** Import `MainTabParamList` from `./types`
+- [x] **Step 3:** Create tab navigator with Home, Settings, Store tabs (placeholder screens for now) — **NOTE: still using placeholders, real screens not wired yet**
+- [x] **Step 4:** Configure tab bar: icons from `@expo/vector-icons` (use Ionicons — check Figma for exact icon names: home outline, settings/gear outline, store/bag outline), active/inactive tint colors from theme (`colors.primary` for active, `colors.textSecondary` for inactive), tab bar style with border color from `colors.border`
+- [x] **Step 5:** Export as `MainNavigator`
 
 ### Task 1.6: Create Root Navigator
 
 **Files:**
 - Create: `src/navigation/root-navigator.tsx`
 
-- [ ] **Step 1:** Import `createNativeStackNavigator` from `@react-navigation/native-stack`
-- [ ] **Step 2:** Import `AuthNavigator` and `MainNavigator`
-- [ ] **Step 3:** Create root stack with two screens: Auth (renders AuthNavigator), Main (renders MainNavigator)
-- [ ] **Step 4:** Set `headerShown: false` for both
-- [ ] **Step 5:** Export as `RootNavigator`
+- [x] **Step 1:** Import `createNativeStackNavigator` from `@react-navigation/native-stack`
+- [x] **Step 2:** Import `AuthNavigator` and `MainNavigator`
+- [x] **Step 3:** Create root stack with two screens: Auth (renders AuthNavigator), Main (renders MainNavigator)
+- [x] **Step 4:** Set `headerShown: false` for both
+- [ ] **Step 5:** Export as `RootNavigator` — **MISSING: SessionResult screen not added to root stack yet**
 
 ### Task 1.7: Wire Up App.tsx Entry Point
 
@@ -181,13 +210,13 @@ Wait — `App.tsx` is at root and `index.ts` imports it. Keep it at root.
 
 - Modify: `App.tsx`
 
-- [ ] **Step 1:** Replace the placeholder App with NavigationContainer wrapping RootNavigator
-- [ ] **Step 2:** Load Inter fonts using `useFonts` from `@expo-google-fonts/inter` (load all weights: 300Light, 400Regular, 500Medium, 600SemiBold, 700Bold)
-- [ ] **Step 3:** Show a loading/null state while fonts load
-- [ ] **Step 4:** Wrap everything in `SafeAreaProvider` from `react-native-safe-area-context`
-- [ ] **Step 5:** Ensure `GestureHandlerRootView` wraps the app (required by `@gorhom/bottom-sheet`)
-- [ ] **Step 6:** Ensure `BottomSheetModalProvider` from `@gorhom/bottom-sheet` wraps the app
-- [ ] **Step 7:** Configure `StatusBar` from expo-status-bar with appropriate style
+- [x] **Step 1:** Replace the placeholder App with NavigationContainer wrapping RootNavigator
+- [x] **Step 2:** Load Inter fonts using `useFonts` from `@expo-google-fonts/inter` (load all weights: 300Light, 400Regular, 500Medium, 600SemiBold, 700Bold)
+- [x] **Step 3:** Show a loading/null state while fonts load
+- [x] **Step 4:** Wrap everything in `SafeAreaProvider` from `react-native-safe-area-context`
+- [x] **Step 5:** Ensure `GestureHandlerRootView` wraps the app (required by `@gorhom/bottom-sheet`)
+- [x] **Step 6:** Ensure `BottomSheetModalProvider` from `@gorhom/bottom-sheet` wraps the app
+- [x] **Step 7:** Configure `StatusBar` from expo-status-bar with appropriate style
 
 ### Task 1.8: Verify Phase 1
 
@@ -210,10 +239,10 @@ Three screens. All local state, no real auth. Match Figma pixel-perfectly.
 **Files:**
 - Create: `src/features/auth/screens/splash-screen.tsx`
 
-- [ ] **Step 1:** White background (`colors.background`), centered "Ready!" logo/text
-- [ ] **Step 2:** Use the splash-icon from `./assets/splash-icon.png` or the Ready! brand text — check Figma for exact treatment
-- [ ] **Step 3:** Auto-navigate to Welcome after ~2 seconds using `useEffect` with a `setTimeout`
-- [ ] **Step 4:** Use `navigation.replace` (not `navigate`) so user can't go back to splash
+- [x] **Step 1:** White background (`colors.background`), centered "Ready!" logo/text
+- [x] **Step 2:** Use the splash-icon from `./assets/splash-icon.png` or the Ready! brand text — check Figma for exact treatment
+- [x] **Step 3:** Auto-navigate to Welcome after ~2 seconds using `useEffect` with a `setTimeout`
+- [x] **Step 4:** Use `navigation.replace` (not `navigate`) so user can't go back to splash
 - [ ] **Step 5:** Add a subtle fade-out animation with react-native-reanimated if time permits (bonus)
 
 ### Task 2.2: Welcome Screen
@@ -221,44 +250,44 @@ Three screens. All local state, no real auth. Match Figma pixel-perfectly.
 **Files:**
 - Create: `src/features/auth/screens/welcome-screen.tsx`
 
-- [ ] **Step 1:** White background, vertically centered content
-- [ ] **Step 2:** Ready! brand logo/text at top — match Figma size and weight (likely `typography.sizes.xxxl` or `typography.sizes.display` with `typography.fonts.inter.bold`)
-- [ ] **Step 3:** Illustrated character image below — check Figma for the exact illustration. If it's an asset, download from Figma and place in `assets/`. If it's a remote URL, use expo-image. If not extractable, create a similar placeholder illustration or use a colored View with an icon.
-- [ ] **Step 4:** Tagline text: "Practice Top Interview Questions with AI" — match Figma font size and color (`colors.textSecondary` likely)
-- [ ] **Step 5:** Primary CTA button at bottom using the shared `Button` component — match Figma label (likely "Get Started" or similar), full-width, primary variant
-- [ ] **Step 6:** CTA navigates to Login screen
-- [ ] **Step 7:** Padding using `spacing.screenPadding` throughout
+- [x] **Step 1:** White background, vertically centered content
+- [x] **Step 2:** Ready! brand logo/text at top — match Figma size and weight (likely `typography.sizes.xxxl` or `typography.sizes.display` with `typography.fonts.inter.bold`)
+- [x] **Step 3:** Illustrated character Image below — using expo-image with avatar from assets + company logos from mock data
+- [ ] **Step 4:** Tagline text: "Practice Top Interview Questions with AI" — match Figma font size and color (`colors.textSecondary` likely) — **MISSING: no tagline visible in current code**
+- [x] **Step 5:** Primary CTA button at bottom using the shared `Button` component — match Figma label (likely "Get Started" or similar), full-width, primary variant — **DONE: custom CTA with "Get Started"**
+- [x] **Step 6:** CTA navigates to Login screen
+- [x] **Step 7:** Padding using `spacing.screenPadding` throughout
 
 ### Task 2.3: Login Screen — Phone Input
 
 **Files:**
 - Create: `src/features/auth/screens/login-screen.tsx`
 
-- [ ] **Step 1:** White background with back navigation (stack header hidden, custom back button or swipe-back)
-- [ ] **Step 2:** "Kickstart your journey" heading — match Figma font size/weight/color exactly
-- [ ] **Step 3:** Subtitle text below heading (check Figma for exact copy)
-- [ ] **Step 4:** Mobile number input field:
-  - Country code prefix (+91) as a non-editable label
-  - Text input for 10-digit phone number
-  - Styling: border from `colors.border`, focused border from `colors.borderFocused`, radius from `spacing.inputRadius`
-  - Font: `typography.fonts.inter.normal`, size from `typography.sizes.l`
-  - Placeholder text: "Mobile Number" or similar from Figma
-- [ ] **Step 5:** State management: `useState` for `step` ("phone" | "otp"), `phone`, `otp`
+- [x] **Step 1:** White background with back navigation (stack header hidden, custom back button or swipe-back)
+- [x] **Step 2:** "Kickstart your journey" heading — match Figma font size/weight/color exactly
+- [x] **Step 3:** Subtitle text below heading (check Figma for exact copy)
+- [x] **Step 4:** Mobile number input field:
+   - Country code prefix (+91) as a non-editable label
+   - Text input for 10-digit phone number
+   - Styling: border from `colors.border`, focused border from `colors.borderFocused`, radius from `spacing.inputRadius`
+   - Font: `typography.fonts.inter.normal`, size from `typography.sizes.l`
+   - Placeholder text: "Mobile Number" or similar from Figma
+- [x] **Step 5:** State management: `useState` for `step` ("phone" | "otp"), `phone`, `otp` — **extracted to `use-login` hook**
 
 ### Task 2.4: Login Screen — OTP Input
 
 **Files:**
 - Modify: `src/features/auth/screens/login-screen.tsx`
 
-- [ ] **Step 1:** When phone is submitted, transition UI to OTP step (no navigation, same screen state change)
-- [ ] **Step 2:** "Enter OTP" heading — match Figma
-- [ ] **Step 3:** 4-digit OTP input: 4 individual boxes side-by-side, each accepting one digit
-  - Each box: square-ish, border from `colors.border`, focused border from `colors.borderFocused`
-  - Auto-focus next box on digit entry
-  - Auto-advance to verification when all 4 digits entered (or explicit submit button)
-- [ ] **Step 4:** "Verify" or "Submit" button — primary variant, using shared Button component
+- [x] **Step 1:** When phone is submitted, transition UI to OTP step (no navigation, same screen state change)
+- [x] **Step 2:** "Enter OTP" heading — match Figma
+- [x] **Step 3:** 4-digit OTP input: 4 individual boxes side-by-side, each accepting one digit — **DISCREPANCY: current code uses 6-digit OTP (`OTP_LENGTH = 6`), plan says 4. Decide which matches Figma.**
+   - Each box: square-ish, border from `colors.border`, focused border from `colors.borderFocused`
+   - Auto-focus next box on digit entry
+   - Auto-advance to verification when all 4 digits entered (or explicit submit button)
+- [x] **Step 4:** "Verify" or "Submit" button — primary variant, using shared Button component
 - [ ] **Step 5:** "Resend OTP" text link below (non-functional or with a timer — check Figma)
-- [ ] **Step 6:** On verify: navigate to Main tabs using `navigation.replace` (reset the stack so user can't go back to auth)
+- [x] **Step 6:** On verify: navigate to Main tabs using `navigation.replace` (reset the stack so user can't go back to auth) — **DONE: uses `navigation.getParent()?.navigate("Main")`**
 
 ### Task 2.5: Verify Phase 2
 
