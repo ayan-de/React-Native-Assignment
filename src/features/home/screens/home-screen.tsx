@@ -13,7 +13,7 @@ import type { HomeTab, Question } from "../types";
 import { useState, useCallback } from "react";
 
 type ListItem =
-  | { type: "question"; question: Question }
+  | { type: "question"; question: Question; questionIndex: number }
   | { type: "promo"; count: number; questionNumber: number };
 
 export function HomeScreen() {
@@ -22,9 +22,11 @@ export function HomeScreen() {
   const [activeTab, setActiveTab] = useState<HomeTab>("Home");
 
   const listItems: ListItem[] = [];
-  questions.forEach((q, index) => {
-    listItems.push({ type: "question", question: q });
-    if (index === 2) {
+  let questionIndex = 0;
+  questions.forEach((q, idx) => {
+    listItems.push({ type: "question", question: q, questionIndex });
+    questionIndex++;
+    if (idx === 2) {
       listItems.push({
         type: "promo",
         count: q.completedTodayCount,
@@ -39,6 +41,7 @@ export function HomeScreen() {
         return (
           <QuestionCard
             question={item.question}
+            index={item.questionIndex}
             onPress={(id) => {
               console.log("Pressed question:", id);
             }}

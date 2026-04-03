@@ -3,11 +3,12 @@ import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { typography } from "@/theme/typography";
 import { companyLogos, homeColors } from "../constants";
+import { getStairPadding } from "../types";
 import type { QuestionCardProps } from "../types";
 
 const NUMBER_SIZE = 74;
 
-export function QuestionCard({ question, onPress }: QuestionCardProps) {
+export function QuestionCard({ question, index, onPress }: QuestionCardProps) {
   const isUpNext = question.state === "upnext";
   const isDone = question.state === "done";
 
@@ -37,7 +38,7 @@ export function QuestionCard({ question, onPress }: QuestionCardProps) {
 
   return (
     <Pressable
-      style={styles.container}
+      style={[styles.container, { paddingLeft: getStairPadding(index) }]}
       onPress={() => onPress(question.id)}
     >
       <View style={styles.innerRow}>
@@ -89,7 +90,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   companySection: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     borderRadius: 30,
     height: 73,
-    maxWidth: "55%",
+    width: 150,
     shadowOffset: { width: 1, height: 8 },
     shadowOpacity: 1,
     shadowRadius: 0,
