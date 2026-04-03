@@ -1,1 +1,3 @@
 export const welcomeAvatar = require("../../assets/welcomeScreenImage.png");
+export const call1 = require("./call1.png");
+export const call2 = require("./call2.png");

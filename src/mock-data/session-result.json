@@ -2,20 +2,27 @@
   "questionId": "q1",
   "questionText": "API latency is variable & app is sluggish. How do you design UI safely?",
   "companyName": "PhonePe",
+  "companyLogoKey": "phonepe",
+  "durationMinutes": 2,
+  "avatarUrl": "https://i.pravatar.cc/150?img=12",
   "smartSummary": {
     "whatWorkedWell": [
-      "Add your bullet points here based on the Figma"
+      { "id": "w1", "text": "Great structured thinking — broke the problem into latency, retry, and fallback cleanly." },
+      { "id": "w2", "text": "Mentioned skeleton loaders and optimistic updates — shows real product sense." },
+      { "id": "w3", "text": "Discussed trade-offs between consistency and availability clearly." },
+      { "id": "w4", "text": "Good use of caching strategies (stale-while-revalidate) for API responses." }
     ],
     "overallTakeaways": [
-      "Add your bullet points here based on the Figma"
+      { "id": "t1", "text": "Quantify your answers — mention P99 latencies, SLA targets to sound more concrete." },
+      { "id": "t2", "text": "Discuss observability — how would you monitor and alert on degradation?" },
+      { "id": "t3", "text": "Consider edge cases — what happens when all fallbacks fail simultaneously?" },
+      { "id": "t4", "text": "Mention circuit breakers and bulkhead patterns for resilience engineering." }
     ]
   },
   "keyMoments": [
-    {
-      "timestamp": "01:37",
-      "description": "Add key moment description here",
-      "type": "positive"
-    }
+    { "id": "k1", "timestamp": "00:45", "description": "Introduced the concept of graceful degradation early on.", "type": "positive" },
+    { "id": "k2", "timestamp": "01:23", "description": "Paused to think about retry mechanisms and exponential backoff.", "type": "neutral" },
+    { "id": "k3", "timestamp": "02:10", "description": "Confidently explained skeleton vs spinner trade-offs with real examples.", "type": "positive" }
   ],
   "audioDurationSeconds": 312
 }
