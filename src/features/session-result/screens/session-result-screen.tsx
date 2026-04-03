@@ -55,7 +55,10 @@ const highlightColors = {
   dividerLine: "#EFEFF4",
 };
 
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 export function SessionResultScreen() {
+  const insets = useSafeAreaInsets();
   const route = useRoute<SessionResultRouteProp>();
   const navigation = useNavigation();
   const { questionId } = route.params;
@@ -76,8 +79,11 @@ export function SessionResultScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerSection}>
-        <Pressable style={styles.closeButton} onPress={handleClose}>
+      <View style={[styles.headerSection, { paddingTop: Math.max(insets.top + spacing.m, 60) }]}>
+        <Pressable 
+          style={[styles.closeButton, { top: Math.max(insets.top + spacing.xs, 56) }]} 
+          onPress={handleClose}
+        >
           <Ionicons name="close" size={18} color={feedbackColors.closeIcon} />
         </Pressable>
 

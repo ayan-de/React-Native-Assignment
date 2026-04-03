@@ -94,7 +94,7 @@ export function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: insets.top || spacing.xs }]}>
         <TopNavBar />
         <View style={styles.switcherSpacer}>
           <CourseSwitcher />
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: colors.background,
-    paddingTop: 8,
+    // insets.top is used dynamic in component
   },
   switcherSpacer: {
     paddingBottom: spacing.s,

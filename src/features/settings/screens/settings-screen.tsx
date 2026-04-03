@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { spacing } from "@/theme/spacing";
 import { typography } from "@/theme/typography";
 import { settingCardRect1, settingCardRect2 } from "@/assets";
@@ -32,9 +33,15 @@ const sColors = {
 };
 
 export function SettingsScreen() {
+  const insets = useSafeAreaInsets();
   return (
     <View style={styles.container}>
-      <View style={styles.topNav}>
+      <View
+        style={[
+          styles.topNav,
+          { paddingTop: Math.max(insets.top, spacing.m) },
+        ]}
+      >
         <Pressable style={styles.navBackBtn}>
           <Ionicons name="chevron-back" size={22} color={sColors.navIcon} />
         </Pressable>
@@ -73,15 +80,11 @@ function TrialCard() {
       />
 
       <View style={styles.trialContent}>
-        <Text style={styles.trialTitle}>
-          3 days free trial for
-        </Text>
+        <Text style={styles.trialTitle}>3 days free trial for</Text>
         <View style={styles.trialPriceRow}>
           <Text style={styles.trialPrice}>{settings.trialPrice}</Text>
         </View>
-        <Text style={styles.trialSubtext}>
-          Then {settings.trialMonthlyPrice}
-        </Text>
+        <Text style={styles.trialSubtext}>Then {settings.trialMonthlyPrice}</Text>
       </View>
       <Image
         source={require("@/assets/settingsImage.png")}
@@ -134,11 +137,7 @@ function ProfileCard() {
       <View style={styles.menuDivider} />
       <View style={styles.menuRow}>
         <View style={styles.menuLeft}>
-          <Ionicons
-            name="calendar-outline"
-            size={16}
-            color={sColors.menuIcon}
-          />
+          <Ionicons name="calendar-outline" size={16} color={sColors.menuIcon} />
           <Text style={styles.menuLabel}>Learning since</Text>
         </View>
         <Text style={styles.menuValue}>{settings.learningSince}</Text>
@@ -185,9 +184,7 @@ function ActionCard() {
 function Footer() {
   return (
     <View style={styles.footer}>
-      <Text style={styles.footerText}>
-        App version {settings.appVersion}
-      </Text>
+      <Text style={styles.footerText}>App version {settings.appVersion}</Text>
       <Text style={styles.footerText}>Made with ❤️ from India</Text>
     </View>
   );
@@ -202,7 +199,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: spacing.m,
-    paddingTop: spacing.xl,
     height: 62,
     gap: spacing.m,
   },
@@ -228,6 +224,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: spacing.m,
+    paddingTop: spacing.l,
     paddingBottom: spacing.xxxl,
     gap: spacing.m,
   },
