@@ -8,7 +8,7 @@
     "text": "API latency is variable & app is sluggish. How do you design UI safely?",
     "durationMinutes": 2,
     "completedTodayCount": 2312,
-    "state": "upnext"
+    "state": "done"
   },
   {
     "id": "q2",
@@ -19,7 +19,7 @@
     "text": "Design a rate limiter for a distributed system.",
     "durationMinutes": 2,
     "completedTodayCount": 1845,
-    "state": "not-done"
+    "state": "upnext"
   },
   {
     "id": "q3",

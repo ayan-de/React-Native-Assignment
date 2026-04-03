@@ -18,6 +18,23 @@ export const homeColors = {
   notDoneGray: "#D1D1D6",
   notDoneShadow: "rgba(142,142,147,1)",
   upNextShadow: "rgba(193,148,0,1)",
+  doneCompanyBg: "#D8F7C2",
+  doneCompanyShadow: "rgba(0,170,43,1)",
+  doneNumberBg: "#94DE5F",
+  doneNumberBgInner: "#79D634",
+  upNextCompanyBg: "#FFF0BF",
+  upNextNumberBg: "#FFD033",
+  upNextStartText: "#13BF69",
+  upNextStartBorder: "#E5E5EA",
+  notDoneCompanyBg: "#EFEFF4",
+  notDoneCompanyShadow: "rgba(142,142,147,1)",
+  notDoneNumberBg: "#D1D1D6",
+  logoBorderDone: "#D8F7C2",
+  logoBorderUpNext: "#FFF0BF",
+  logoBorderNotDone: "#EFEFF4",
+  companyTextDark: "#0B0B0D",
+  numberTextWhite: "#FFFFFF",
+  numberTextStroke: "rgba(0,0,0,0.6)",
 };
 
 export const companyLogos: Record<string, number> = {

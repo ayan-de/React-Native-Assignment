@@ -5,150 +5,126 @@ import { typography } from "@/theme/typography";
 import { companyLogos, homeColors } from "../constants";
 import type { QuestionCardProps } from "../types";
 
+const NUMBER_SIZE = 74;
+
 export function QuestionCard({ question, onPress }: QuestionCardProps) {
   const isUpNext = question.state === "upnext";
   const isDone = question.state === "done";
 
-  const containerStyle = isUpNext
-    ? styles.containerUpNext
+  const companyBg = isUpNext
+    ? homeColors.upNextCompanyBg
     : isDone
-      ? styles.containerDone
-      : styles.containerNotDone;
+      ? homeColors.doneCompanyBg
+      : homeColors.notDoneCompanyBg;
 
-  const companyStyle = isUpNext
-    ? styles.companyUpNext
+  const shadowColor = isUpNext
+    ? homeColors.upNextShadow
     : isDone
-      ? styles.companyDone
-      : styles.companyNotDone;
+      ? homeColors.doneCompanyShadow
+      : homeColors.notDoneCompanyShadow;
 
-  const numberStyle = isUpNext
-    ? styles.numberUpNext
+  const numberBg = isUpNext
+    ? homeColors.upNextNumberBg
     : isDone
-      ? styles.numberDone
-      : styles.numberNotDone;
+      ? homeColors.doneNumberBg
+      : homeColors.notDoneNumberBg;
+
+  const logoBorder = isUpNext
+    ? homeColors.logoBorderUpNext
+    : isDone
+      ? homeColors.logoBorderDone
+      : homeColors.logoBorderNotDone;
 
   return (
     <Pressable
-      style={[styles.container, containerStyle]}
+      style={styles.container}
       onPress={() => onPress(question.id)}
     >
-      <View style={[styles.companySection, companyStyle]}>
-        <Text
-          style={[styles.companyName, !isUpNext && !isDone && styles.companyNameMuted]}
-          numberOfLines={1}
-        >
-          {question.companyName}
-        </Text>
-        <View style={styles.logoCircle}>
-          <Image
-            source={companyLogos[question.companyLogoKey]}
-            style={styles.logo}
-            contentFit="contain"
-            cachePolicy="memory-disk"
-          />
+      <View style={styles.innerRow}>
+        <View style={[styles.companySection, { backgroundColor: companyBg, shadowColor }]}>
+          <Text
+            style={[
+              styles.companyName,
+              !isUpNext && !isDone && styles.companyNameMuted,
+            ]}
+            numberOfLines={1}
+          >
+            {question.companyName}
+          </Text>
+          <View style={[styles.logoCircle, { borderColor: logoBorder }]}>
+            <Image
+              source={companyLogos[question.companyLogoKey]}
+              style={styles.logo}
+              contentFit="contain"
+              cachePolicy="memory-disk"
+            />
+          </View>
         </View>
-      </View>
 
-      <View style={styles.buttonSection}>
-        <View style={[styles.numberCircle, numberStyle]}>
-          {isDone && (
-            <View style={styles.checkmarkBadge}>
-              <Ionicons name="checkmark-circle" size={14} color={homeColors.checkmarkGreen} />
-            </View>
-          )}
+        <View style={[styles.numberCircle, { backgroundColor: numberBg }]}>
           <Text style={styles.numberText}>{question.questionNumber}</Text>
         </View>
-
-        {isUpNext && (
-          <View style={styles.startRow}>
-            <View style={styles.startPill}>
-              <Text style={styles.startLabel}>START</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={14} color={homeColors.darkText} />
-          </View>
-        )}
       </View>
+
+      {isUpNext && (
+        <View style={styles.startRow}>
+          <View style={styles.startPill}>
+            <Text style={styles.startLabel}>START</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={14} color={homeColors.darkText} />
+        </View>
+      )}
     </Pressable>
   );
 }
 
-const NUMBER_SIZE = 48;
-
 const styles = StyleSheet.create({
   container: {
+    paddingVertical: 8,
+    height: 91,
+  },
+  innerRow: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 16,
-    padding: 12,
-  },
-  containerUpNext: {
-    shadowColor: "#C19500",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.6,
-    shadowRadius: 0,
-    elevation: 4,
-  },
-  containerDone: {
-    shadowColor: "#BF9C26",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.6,
-    shadowRadius: 0,
-    elevation: 4,
-  },
-  containerNotDone: {
-    shadowColor: "#8E8E93",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 0,
-    elevation: 2,
   },
   companySection: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingLeft: 16,
-    paddingRight: 8,
-    paddingVertical: 8,
+    paddingLeft: 20,
+    paddingRight: 20,
     borderRadius: 30,
-    marginRight: 8,
-  },
-  companyUpNext: {
-    backgroundColor: homeColors.cream,
-  },
-  companyDone: {
-    backgroundColor: "#F0FDF4",
-  },
-  companyNotDone: {
-    backgroundColor: "#F5F5F8",
+    height: 73,
+    shadowOffset: { width: 1, height: 8 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 8,
   },
   companyName: {
     flex: 1,
     fontSize: 14,
-    fontFamily: typography.fonts.inter.medium,
-    fontWeight: "500",
-    color: homeColors.darkText,
+    fontFamily: typography.fonts.inter.semiBold,
+    fontWeight: "600",
+    color: homeColors.companyTextDark,
   },
   companyNameMuted: {
-    color: homeColors.mutedText,
+    fontFamily: typography.fonts.inter.medium,
+    fontWeight: "500",
+    color: homeColors.companyTextDark,
   },
   logoCircle: {
     width: 22,
     height: 22,
     borderRadius: 11,
-    backgroundColor: "#FFFFFF",
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "#E5E7EB",
+    backgroundColor: homeColors.white,
+    borderWidth: 1,
     overflow: "hidden",
   },
   logo: {
     width: 22,
     height: 22,
-  },
-  buttonSection: {
-    alignItems: "center",
-    gap: 4,
   },
   numberCircle: {
     width: NUMBER_SIZE,
@@ -156,46 +132,40 @@ const styles = StyleSheet.create({
     borderRadius: NUMBER_SIZE / 2,
     alignItems: "center",
     justifyContent: "center",
-  },
-  numberUpNext: {
-    backgroundColor: "#F59E0B",
-  },
-  numberDone: {
-    backgroundColor: "#4ADE80",
-  },
-  numberNotDone: {
-    backgroundColor: "#D1D1D6",
-  },
-  checkmarkBadge: {
-    position: "absolute",
-    top: -2,
-    right: -2,
-    zIndex: 1,
+    marginLeft: -12,
+    zIndex: 2,
   },
   numberText: {
-    fontSize: 22,
+    fontSize: 36,
     fontFamily: typography.fonts.inter.bold,
     fontWeight: "800",
-    color: "#FFFFFF",
+    color: homeColors.numberTextWhite,
+    textShadowColor: homeColors.numberTextStroke,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 2,
   },
   startRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: 2,
+    position: "absolute",
+    right: 4,
+    bottom: -4,
+    zIndex: 3,
   },
   startPill: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: homeColors.white,
     borderRadius: 10,
-    borderWidth: 1.5,
-    borderColor: "#FF7800",
-    paddingHorizontal: 10,
-    paddingVertical: 2,
+    borderWidth: 2,
+    borderColor: homeColors.upNextStartBorder,
+    paddingHorizontal: 14,
+    paddingVertical: 4,
   },
   startLabel: {
-    fontSize: 10,
-    fontFamily: typography.fonts.inter.semiBold,
-    fontWeight: "600",
-    color: "#1C1C1E",
-    letterSpacing: 0.5,
+    fontSize: 15,
+    fontFamily: typography.fonts.inter.bold,
+    fontWeight: "700",
+    color: homeColors.upNextStartText,
+    letterSpacing: 0.34,
   },
 });
