@@ -5,46 +5,56 @@ import { typography } from "@/theme/typography";
 import { homeColors } from "../constants";
 
 export function CourseSwitcher() {
+  const SHADOW_HEIGHT = 4;
+
   return (
-    <Pressable style={styles.container}>
-      <View style={styles.content}>
-        <View style={styles.iconContainer}>
-          <Image
-            source={require("../../../assets/croco-mascot-frame.png")}
-            style={styles.mascot}
-            cachePolicy="memory-disk"
-          />
+    <View style={styles.outerContainer}>
+      {/* Shadow Layer */}
+      <View style={styles.shadow} />
+
+      {/* Surface Layer */}
+      <Pressable style={styles.container}>
+        <View style={styles.content}>
+          <View style={styles.iconContainer}>
+            <Image
+              source={require("../../../assets/croco-mascot-frame.png")}
+              style={styles.mascot}
+              cachePolicy="memory-disk"
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.subtitle}>Practicing Top 50 Questions for</Text>
+            <Text style={styles.title}>Big Tech Companies</Text>
+          </View>
         </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.subtitle}>
-            Practicing Top 50 Questions for
-          </Text>
-          <Text style={styles.title}>Big Tech Companies</Text>
-        </View>
-      </View>
-      <Ionicons
-        name="chevron-down"
-        size={20}
-        color={homeColors.mutedText}
-      />
-    </Pressable>
+        <Ionicons name="chevron-down" size={20} color={homeColors.mutedText} />
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    marginHorizontal: 16,
+    position: "relative",
+    paddingBottom: 4,
+  },
+  shadow: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 4,
+    bottom: 0,
+    backgroundColor: homeColors.goldShadow,
+    borderRadius: 24,
+  },
   container: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: homeColors.cream,
     borderRadius: 24,
-    marginHorizontal: 16,
     paddingHorizontal: 16,
     paddingVertical: 14,
-    shadowColor: homeColors.goldShadow,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 4,
   },
   content: {
     flex: 1,
@@ -70,13 +80,11 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     fontFamily: typography.fonts.inter.medium,
-    fontWeight: "500",
     color: homeColors.mutedText,
   },
   title: {
     fontSize: 16,
     fontFamily: typography.fonts.inter.semiBold,
-    fontWeight: "600",
     color: homeColors.darkText,
   },
 });
