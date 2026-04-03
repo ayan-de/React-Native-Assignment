@@ -35,6 +35,14 @@ export const homeColors = {
   companyTextDark: "#0B0B0D",
   numberTextWhite: "#FFFFFF",
   numberTextStroke: "rgba(0,0,0,0.6)",
+
+  modalBackground: "#FFCE00",
+  modalButtonDarkBg: "#846A11",
+  modalButtonDarkShadow: "#42360F",
+  modalReadyText: "#00C35F",
+  modalSubtitleText: "#48484A",
+  modalQuestionText: "#1C1C1E",
+  modalBackdrop: "rgba(0,0,0,0.4)",
 };
 
 export const companyLogos: Record<string, number> = {

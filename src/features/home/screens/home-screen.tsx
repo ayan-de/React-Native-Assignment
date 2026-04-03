@@ -1,6 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 import { colors } from "@/theme/colors";
 import { spacing } from "@/theme/spacing";
 import { TopNavBar } from "../components/top-nav-bar";
@@ -8,9 +9,12 @@ import { CourseSwitcher } from "../components/course-switcher";
 import { QuestionCard } from "../components/question-card";
 import { ProPromoBanner } from "../components/pro-promo-banner";
 import { BottomNav } from "../components/bottom-nav";
+import { QuestionDetailModal } from "../components/question-detail-modal";
 import { useQuestions } from "../hooks/use-questions";
 import type { HomeTab, Question } from "../types";
 import { useState, useCallback } from "react";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import type { RootStackParamList } from "@/navigation/types";
 
 type ListItem =
   | { type: "question"; question: Question; questionIndex: number }
@@ -19,7 +23,10 @@ type ListItem =
 export function HomeScreen() {
   const { questions } = useQuestions();
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [activeTab, setActiveTab] = useState<HomeTab>("Home");
+  const [selectedQuestion, setSelectedQuestion] = useState<Question | null>(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const listItems: ListItem[] = [];
   let questionIndex = 0;
@@ -35,6 +42,25 @@ export function HomeScreen() {
     }
   });
 
+  const handleQuestionPress = useCallback((id: string) => {
+    const q = questions.find((q) => q.id === id);
+    if (q) {
+      setSelectedQuestion(q);
+      setIsModalVisible(true);
+    }
+  }, [questions]);
+
+  const handleCloseModal = useCallback(() => {
+    setIsModalVisible(false);
+    setSelectedQuestion(null);
+  }, []);
+
+  const handleReady = useCallback((questionId: string) => {
+    setIsModalVisible(false);
+    setSelectedQuestion(null);
+    navigation.navigate("SessionResult", { questionId });
+  }, [navigation]);
+
   const renderItem = useCallback(
     ({ item }: { item: ListItem }) => {
       if (item.type === "question") {
@@ -42,9 +68,7 @@ export function HomeScreen() {
           <QuestionCard
             question={item.question}
             index={item.questionIndex}
-            onPress={(id) => {
-              console.log("Pressed question:", id);
-            }}
+            onPress={handleQuestionPress}
           />
         );
       }
@@ -55,7 +79,7 @@ export function HomeScreen() {
         />
       );
     },
-    []
+    [handleQuestionPress]
   );
 
   const handleTabPress = useCallback((tab: string) => {
@@ -84,6 +108,13 @@ export function HomeScreen() {
       </View>
 
       <BottomNav activeTab={activeTab} onTabPress={handleTabPress} />
+
+      <QuestionDetailModal
+        visible={isModalVisible}
+        question={selectedQuestion}
+        onClose={handleCloseModal}
+        onReady={handleReady}
+      />
     </View>
   );
 }

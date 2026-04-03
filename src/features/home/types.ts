@@ -37,3 +37,10 @@ export interface BottomNavProps {
 }
 
 export type HomeTab = "Home" | "Store" | "Progress";
+
+export interface QuestionDetailModalProps {
+  visible: boolean;
+  question: Question | null;
+  onClose: () => void;
+  onReady: (questionId: string) => void;
+}
