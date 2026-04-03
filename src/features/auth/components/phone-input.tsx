@@ -11,7 +11,7 @@ export function PhoneInput({ value, onChangeText, error }: PhoneInputProps) {
       <View style={styles.inputWrapper}>
         <View style={styles.inputContent}>
           <View style={styles.regionCode}>
-            <Text style={styles.regionCodeText}>+91</Text>
+            <Text style={styles.regionCodeText}>🇮🇳 +91</Text>
             <Ionicons name="chevron-down" size={12} color={colors.textPrimary} />
           </View>
           <View style={styles.divider} />

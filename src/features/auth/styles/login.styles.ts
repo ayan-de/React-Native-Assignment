@@ -73,7 +73,7 @@ export const loginStyles = StyleSheet.create({
   },
   divider: {
     width: 1,
-    height: 1,
+    height: 24,
     backgroundColor: colors.border,
   },
   phoneInput: {
