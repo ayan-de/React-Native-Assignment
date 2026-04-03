@@ -38,7 +38,7 @@ export function QuestionCard({ question, index, onPress }: QuestionCardProps) {
 
   return (
     <Pressable
-      style={[styles.container, { paddingLeft: getStairPadding(index) }]}
+      style={[styles.container, { paddingLeft: getStairPadding(index), marginTop: isUpNext ? 28 : 0 }]}
       onPress={() => onPress(question.id)}
     >
       <View style={styles.innerRow}>
@@ -72,7 +72,7 @@ export function QuestionCard({ question, index, onPress }: QuestionCardProps) {
           <View style={styles.startPill}>
             <Text style={styles.startLabel}>START</Text>
           </View>
-          <Ionicons name="chevron-forward" size={14} color={homeColors.darkText} />
+          <Ionicons name="chevron-down" size={14} color={homeColors.darkText} />
         </View>
       )}
     </Pressable>
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 8,
     height: 91,
+    overflow: "visible",
   },
   innerRow: {
     flex: 1,
@@ -146,12 +147,10 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
   },
   startRow: {
-    flexDirection: "row",
     alignItems: "center",
-    gap: 2,
     position: "absolute",
-    right: 4,
-    bottom: -4,
+    left: "76%",
+    top: -26,
     zIndex: 3,
   },
   startPill: {
@@ -168,5 +167,9 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: homeColors.upNextStartText,
     letterSpacing: 0.34,
+  },
+  startArrow: {
+    alignItems: "center",
+    marginTop: -2,
   },
 });
