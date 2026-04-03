@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
+import { Image } from "expo-image";
 import { typography } from "@/theme/typography";
 import { homeColors } from "../constants";
 
@@ -10,11 +11,19 @@ interface ProPromoBannerProps {
 export function ProPromoBanner({ count, questionNumber }: ProPromoBannerProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.flag}>🚩</Text>
+      <Image
+        source={require("../../../assets/promo.png")}
+        style={styles.flag}
+        cachePolicy="memory-disk"
+      />
       <Text style={styles.text}>
         {count.toLocaleString()} users completed Question {questionNumber} today
       </Text>
-      <Text style={styles.flag}>🚩</Text>
+      <Image
+        source={require("../../../assets/promo.png")}
+        style={styles.flag}
+        cachePolicy="memory-disk"
+      />
     </View>
   );
 }
@@ -38,6 +47,7 @@ const styles = StyleSheet.create({
     color: homeColors.promoText,
   },
   flag: {
-    fontSize: 14,
+    width: 13,
+    height: 13,
   },
 });
