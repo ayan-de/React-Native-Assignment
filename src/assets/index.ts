@@ -5,3 +5,5 @@ export const letsGoIcon = require("./letsgo.png");
 export const homeIcon = require("./home.png");
 export const settingsIcon = require("./settings.png");
 export const storeIcon = require("./store.png");
+export const settingCardRect1 = require("./settingcard-rectangle1.png");
+export const settingCardRect2 = require("./settingcard-rectangle2.png");

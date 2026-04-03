@@ -1,8 +1,10 @@
+import React from "react";
 import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { spacing } from "@/theme/spacing";
 import { typography } from "@/theme/typography";
+import { settingCardRect1, settingCardRect2 } from "@/assets";
 import type { SettingsData } from "../types";
 import settingsData from "@/mock-data/settings.json";
 
@@ -58,6 +60,18 @@ export function SettingsScreen() {
 function TrialCard() {
   return (
     <View style={styles.trialCard}>
+      {/* Decorative Slanted Rectangles */}
+      <Image
+        source={settingCardRect1}
+        style={styles.trialRect1}
+        contentFit="contain"
+      />
+      <Image
+        source={settingCardRect2}
+        style={styles.trialRect2}
+        contentFit="contain"
+      />
+
       <View style={styles.trialContent}>
         <Text style={styles.trialTitle}>
           3 days free trial for
@@ -74,11 +88,15 @@ function TrialCard() {
         style={styles.trialImage}
         cachePolicy="memory-disk"
       />
-      <Pressable style={styles.trialButton}>
-        <Text style={styles.trialButtonText}>
-          START 3 DAYS TRIAL @ {settings.trialPrice}
-        </Text>
-      </Pressable>
+      {/* Elevated Trial Button */}
+      <View style={styles.trialButtonContainer}>
+        <View style={styles.trialButtonShadow} />
+        <Pressable style={styles.trialButton}>
+          <Text style={styles.trialButtonText}>
+            START 3 DAYS TRIAL @ {settings.trialPrice}
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -256,17 +274,42 @@ const styles = StyleSheet.create({
     height: 132,
     zIndex: 3,
   },
-  trialButton: {
+  trialRect1: {
+    position: "absolute",
+    left: -10,
+    top: -5,
+    width: 100,
+    height: 80,
+    opacity: 0.6,
+  },
+  trialRect2: {
+    position: "absolute",
+    left: 20,
+    top: -15,
+    width: 60,
+    height: 50,
+    opacity: 0.3,
+  },
+  trialButtonContainer: {
     marginHorizontal: spacing.m,
+    position: "relative",
+    paddingBottom: 4,
+  },
+  trialButtonShadow: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 4,
+    bottom: 0,
+    backgroundColor: "#D6B060", // Darker gold/brown shade for shadow
+    borderRadius: spacing.cardRadius,
+  },
+  trialButton: {
     backgroundColor: sColors.trialBtnBg,
     borderRadius: spacing.cardRadius,
     paddingVertical: 15,
     alignItems: "center",
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.21,
-    shadowRadius: 0,
-    elevation: 3,
+    justifyContent: "center",
   },
   trialButtonText: {
     fontSize: 14,
