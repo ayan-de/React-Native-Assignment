@@ -28,7 +28,7 @@ export function getStairPadding(index: number): number {
 export interface QuestionCardProps {
   question: Question;
   index: number;
-  onPress: (id: string) => void;
+  onPress: (id: string, py: number) => void;
 }
 
 export interface BottomNavProps {
@@ -43,4 +43,5 @@ export interface QuestionDetailModalProps {
   question: Question | null;
   onClose: () => void;
   onReady: (questionId: string) => void;
+  cardY?: number;
 }

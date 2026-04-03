@@ -27,6 +27,7 @@ export function HomeScreen() {
   const [activeTab, setActiveTab] = useState<HomeTab>("Home");
   const [selectedQuestion, setSelectedQuestion] = useState<Question | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalY, setModalY] = useState(0);
 
   const listItems: ListItem[] = [];
   let questionIndex = 0;
@@ -42,10 +43,11 @@ export function HomeScreen() {
     }
   });
 
-  const handleQuestionPress = useCallback((id: string) => {
+  const handleQuestionPress = useCallback((id: string, py: number) => {
     const q = questions.find((q) => q.id === id);
     if (q) {
       setSelectedQuestion(q);
+      setModalY(py);
       setIsModalVisible(true);
     }
   }, [questions]);
@@ -108,6 +110,7 @@ export function HomeScreen() {
             item.type === "promo" ? "promo" : `${item.type}-${index}`
           }
           contentContainerStyle={styles.listContent}
+          ListFooterComponent={<View style={{ height: 140 }} />}
         />
       </View>
 
@@ -118,6 +121,7 @@ export function HomeScreen() {
         question={selectedQuestion}
         onClose={handleCloseModal}
         onReady={handleReady}
+        cardY={modalY}
       />
     </View>
   );

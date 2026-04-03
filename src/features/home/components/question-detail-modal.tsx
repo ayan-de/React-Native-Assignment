@@ -1,4 +1,4 @@
-import { View, Text, Modal, Pressable, StyleSheet } from "react-native";
+import { View, Text, Modal, Pressable, StyleSheet, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { spacing } from "@/theme/spacing";
@@ -11,9 +11,13 @@ export function QuestionDetailModal({
   question,
   onClose,
   onReady,
+  cardY = 0,
 }: QuestionDetailModalProps) {
+  const { height } = useWindowDimensions();
   if (!question) return null;
 
+  // If card is in bottom 35% of screen, open upward to avoid going off-screen
+  const openUpward = cardY > height * 0.65;
   const logo = companyLogos[question.companyLogoKey];
 
   return (
@@ -24,70 +28,84 @@ export function QuestionDetailModal({
       onRequestClose={onClose}
     >
       <Pressable style={styles.backdrop} onPress={onClose}>
-        <Pressable style={styles.cardWrapper} onPress={(e) => e.stopPropagation()}>
-          <View style={styles.diamond} />
+        <View
+          style={[
+            styles.cardWrapper,
+            {
+              position: "absolute",
+              top: openUpward ? Math.max(100, cardY - 260) : cardY + 50,
+            },
+          ]}
+        >
+          <Pressable style={{ width: "100%" }} onPress={(e) => e.stopPropagation()}>
+            {/* Diamond Pointer at Top if opening downward */}
+            {!openUpward && <View style={styles.diamondTop} />}
 
-          <View style={styles.card}>
-            <Text style={styles.questionText} numberOfLines={2}>
-              {question.text}
-            </Text>
+            <View style={styles.card}>
+              <Text style={styles.questionText} numberOfLines={2}>
+                {question.text}
+              </Text>
 
-            <View style={styles.infoRow}>
-              <View style={styles.companyInfo}>
-                <Text style={styles.askedByText}>
-                  Asked by {question.companyName}
-                </Text>
-                {logo && (
-                  <View style={styles.logoCircle}>
-                    <Image
-                      source={logo}
-                      style={styles.logo}
-                      contentFit="contain"
-                      cachePolicy="memory-disk"
-                    />
-                  </View>
-                )}
-              </View>
+              <View style={styles.infoRow}>
+                <View style={styles.companyInfo}>
+                  <Text style={styles.askedByText}>
+                    Asked by {question.companyName}
+                  </Text>
+                  {logo && (
+                    <View style={styles.logoCircle}>
+                      <Image
+                        source={logo}
+                        style={styles.logo}
+                        contentFit="contain"
+                        cachePolicy="memory-disk"
+                      />
+                    </View>
+                  )}
+                </View>
 
-              <View style={styles.durationInfo}>
-                <Ionicons
-                  name="stopwatch-outline"
-                  size={20}
-                  color={homeColors.modalSubtitleText}
-                />
-                <Text style={styles.durationText}>
-                  {question.durationMinutes} mins
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.buttonsContainer}>
-              {/* Elevated Feedback Button */}
-              <View style={styles.buttonWrapper}>
-                <View style={styles.feedbackShadow} />
-                <Pressable
-                  style={styles.readyButton}
-                  onPress={() => onReady(question.id)}
-                >
-                  <Text style={styles.readyLabel}>FEEDBACK</Text>
-                </Pressable>
-              </View>
-
-              {/* Elevated AI vs AI Button */}
-              <View style={styles.buttonWrapper}>
-                <View style={styles.practiceShadow} />
-                <Pressable style={styles.practiceButton}>
+                <View style={styles.durationInfo}>
                   <Ionicons
-                    name="headset-outline"
-                    size={17}
-                    color={homeColors.white}
+                    name="stopwatch-outline"
+                    size={20}
+                    color={homeColors.modalSubtitleText}
                   />
-                  <Text style={styles.practiceLabel}>AI VS AI (LISTEN)</Text>
-                </Pressable>
+                  <Text style={styles.durationText}>
+                    {question.durationMinutes} mins
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.buttonsContainer}>
+                {/* Elevated Feedback Button */}
+                <View style={styles.buttonWrapper}>
+                  <View style={styles.feedbackShadow} />
+                  <Pressable
+                    style={styles.readyButton}
+                    onPress={() => onReady(question.id)}
+                  >
+                    <Text style={styles.readyLabel}>FEEDBACK</Text>
+                  </Pressable>
+                </View>
+
+                {/* Elevated AI vs AI Button */}
+                <View style={styles.buttonWrapper}>
+                  <View style={styles.practiceShadow} />
+                  <Pressable style={styles.practiceButton}>
+                    <Ionicons
+                      name="headset-outline"
+                      size={17}
+                      color={homeColors.white}
+                    />
+                    <Text style={styles.practiceLabel}>AI VS AI (LISTEN)</Text>
+                  </Pressable>
+                </View>
               </View>
             </View>
-          </View>
-        </Pressable>
+
+            {/* Diamond Pointer at Bottom if opening upward */}
+            {openUpward && <View style={styles.diamondBottom} />}
+          </Pressable>
+        </View>
       </Pressable>
     </Modal>
   );
@@ -97,14 +115,13 @@ const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
     backgroundColor: homeColors.modalBackdrop,
-    justifyContent: "center",
-    alignItems: "center",
   },
   cardWrapper: {
     alignItems: "center",
     width: "88%",
+    alignSelf: "center",
   },
-  diamond: {
+  diamondTop: {
     width: 20,
     height: 20,
     backgroundColor: homeColors.modalBackground,
@@ -112,6 +129,17 @@ const styles = StyleSheet.create({
     transform: [{ rotate: "45deg" }],
     marginBottom: -10,
     zIndex: 2,
+    alignSelf: "center",
+  },
+  diamondBottom: {
+    width: 20,
+    height: 20,
+    backgroundColor: homeColors.modalBackground,
+    borderRadius: 2,
+    transform: [{ rotate: "45deg" }],
+    marginTop: -10,
+    zIndex: 2,
+    alignSelf: "center",
   },
   card: {
     width: "100%",

@@ -39,7 +39,7 @@ export function QuestionCard({ question, index, onPress }: QuestionCardProps) {
           marginTop: 4,
         },
       ]}
-      onPress={() => onPress(question.id)}
+      onPress={(e) => onPress(question.id, e.nativeEvent.pageY)}
     >
       {/* START Tooltip */}
       {isUpNext && (
