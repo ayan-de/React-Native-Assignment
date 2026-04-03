@@ -62,21 +62,29 @@ export function QuestionDetailModal({
             </View>
 
             <View style={styles.buttonsContainer}>
-              <Pressable
-                style={styles.readyButton}
-                onPress={() => onReady(question.id)}
-              >
-                <Text style={styles.readyLabel}>FEEDBACK</Text>
-              </Pressable>
+              {/* Elevated Feedback Button */}
+              <View style={styles.buttonWrapper}>
+                <View style={styles.feedbackShadow} />
+                <Pressable
+                  style={styles.readyButton}
+                  onPress={() => onReady(question.id)}
+                >
+                  <Text style={styles.readyLabel}>FEEDBACK</Text>
+                </Pressable>
+              </View>
 
-              <Pressable style={styles.practiceButton}>
-                <Ionicons
-                  name="headset-outline"
-                  size={17}
-                  color={homeColors.white}
-                />
-                <Text style={styles.practiceLabel}>AI VS AI (LISTEN)</Text>
-              </Pressable>
+              {/* Elevated AI vs AI Button */}
+              <View style={styles.buttonWrapper}>
+                <View style={styles.practiceShadow} />
+                <Pressable style={styles.practiceButton}>
+                  <Ionicons
+                    name="headset-outline"
+                    size={17}
+                    color={homeColors.white}
+                  />
+                  <Text style={styles.practiceLabel}>AI VS AI (LISTEN)</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </Pressable>
@@ -110,13 +118,12 @@ const styles = StyleSheet.create({
     backgroundColor: homeColors.modalBackground,
     borderRadius: spacing.s,
     padding: spacing.m,
-    gap: 10,
+    gap: 12,
     zIndex: 1,
   },
   questionText: {
     fontSize: 16,
     fontFamily: typography.fonts.inter.bold,
-    fontWeight: "700",
     color: homeColors.modalQuestionText,
     lineHeight: 22,
   },
@@ -133,7 +140,6 @@ const styles = StyleSheet.create({
   askedByText: {
     fontSize: 14,
     fontFamily: typography.fonts.inter.semiBold,
-    fontWeight: "600",
     color: homeColors.modalSubtitleText,
     letterSpacing: -0.01,
   },
@@ -158,12 +164,25 @@ const styles = StyleSheet.create({
   durationText: {
     fontSize: 14,
     fontFamily: typography.fonts.inter.semiBold,
-    fontWeight: "600",
     color: homeColors.modalSubtitleText,
     letterSpacing: -0.01,
   },
   buttonsContainer: {
-    gap: 10,
+    gap: 14,
+    marginTop: 4,
+  },
+  buttonWrapper: {
+    position: "relative",
+    paddingBottom: 4,
+  },
+  feedbackShadow: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 4,
+    bottom: 0,
+    backgroundColor: "rgba(0,0,0,0.15)",
+    borderRadius: spacing.inputRadius,
   },
   readyButton: {
     backgroundColor: homeColors.white,
@@ -171,18 +190,21 @@ const styles = StyleSheet.create({
     height: 41,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "rgba(0,0,0,0.2)",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 3,
   },
   readyLabel: {
     fontSize: 15,
     fontFamily: typography.fonts.inter.bold,
-    fontWeight: "700",
     color: homeColors.modalReadyText,
     letterSpacing: 0.51,
+  },
+  practiceShadow: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 4,
+    bottom: 0,
+    backgroundColor: homeColors.modalButtonDarkShadow,
+    borderRadius: spacing.inputRadius,
   },
   practiceButton: {
     backgroundColor: homeColors.modalButtonDarkBg,
@@ -192,16 +214,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.xxs,
-    shadowColor: homeColors.modalButtonDarkShadow,
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 3,
   },
   practiceLabel: {
     fontSize: 15,
     fontFamily: typography.fonts.inter.bold,
-    fontWeight: "700",
     color: homeColors.white,
     letterSpacing: 0.51,
   },
