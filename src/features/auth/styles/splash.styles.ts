@@ -25,7 +25,7 @@ export const splashStyles = StyleSheet.create({
   aiBadge: {
     paddingHorizontal: spacing.xs,
     paddingVertical: spacing.xxs + 2,
-    backgroundColor: "#1C1C1E",
+    backgroundColor: colors.textPrimary,
     borderRadius: 9,
     alignItems: "center",
     justifyContent: "center",

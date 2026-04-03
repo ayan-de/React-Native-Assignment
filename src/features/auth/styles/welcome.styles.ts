@@ -28,7 +28,7 @@ export const welcomeStyles = StyleSheet.create({
   aiBadge: {
     paddingHorizontal: 3,
     paddingVertical: spacing.xxs + 1,
-    backgroundColor: "#1C1C1E",
+    backgroundColor: colors.textPrimary,
     borderRadius: 7,
     alignItems: "center",
     justifyContent: "center",
@@ -68,7 +68,7 @@ export const welcomeStyles = StyleSheet.create({
     borderRadius: COMPANY_LOGO_SIZE / 2,
     backgroundColor: colors.background,
     borderWidth: 2,
-    borderColor: "#E3F3F0",
+    borderColor: colors.successLight,
     alignItems: "center",
     justifyContent: "center",
     padding: spacing.xxs,
@@ -92,7 +92,7 @@ export const welcomeStyles = StyleSheet.create({
     paddingVertical: spacing.m,
     marginBottom: spacing.m,
     elevation: 4,
-    shadowColor: "#FF3900",
+    shadowColor: colors.primaryDark,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
     shadowRadius: 0,
@@ -112,7 +112,7 @@ export const welcomeStyles = StyleSheet.create({
     lineHeight: 16,
     textAlign: "center",
     letterSpacing: -0.01 * typography.sizes.s,
-    color: "#6C6C70",
+    color: colors.textSecondary,
   },
 });
 
