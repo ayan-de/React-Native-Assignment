@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     borderRadius: 30,
     height: 73,
+    maxWidth: "55%",
     shadowOffset: { width: 1, height: 8 },
     shadowOpacity: 1,
     shadowRadius: 0,
