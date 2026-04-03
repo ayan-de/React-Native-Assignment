@@ -36,7 +36,7 @@ export interface BottomNavProps {
   onTabPress: (tab: string) => void;
 }
 
-export type HomeTab = "Home" | "Store" | "Progress";
+export type HomeTab = "Home" | "Store" | "Settings";
 
 export interface QuestionDetailModalProps {
   visible: boolean;

@@ -1,65 +1,91 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { typography } from "@/theme/typography";
-import { spacing } from "@/theme/spacing";
 import { homeColors } from "../constants";
-import type { BottomNavProps, HomeTab } from "../types";
-
-const TAB_ITEMS: { key: HomeTab; label: string; icon: string; activeIcon: string }[] = [
-  { key: "Home", label: "Home", icon: "home-outline", activeIcon: "home" },
-  { key: "Store", label: "Store", icon: "bag-handle-outline", activeIcon: "bag-handle" },
-  { key: "Progress", label: "Progress", icon: "stats-chart-outline", activeIcon: "stats-chart" },
-];
+import { homeIcon, settingsIcon, storeIcon } from "@/assets";
+import type { BottomNavProps } from "../types";
 
 export function BottomNav({ activeTab, onTabPress }: BottomNavProps) {
   return (
     <View style={styles.container}>
       <View style={styles.navBar}>
-        {TAB_ITEMS.map((tab) => {
-          const isActive = activeTab === tab.key;
-          const isStore = tab.key === "Store";
-
-          if (isStore) {
-            return (
-              <Pressable
-                key={tab.key}
-                style={styles.storeButtonWrapper}
-                onPress={() => onTabPress(tab.key)}
-              >
-                <View style={styles.storeButton}>
-                  <Ionicons
-                    name={tab.activeIcon as any}
-                    size={24}
-                    color={homeColors.storeIcon}
-                  />
-                </View>
-                <Text style={styles.storeLabel}>{tab.label}</Text>
-              </Pressable>
-            );
-          }
-
-          return (
+        {/* Main Segment (Home + Settings) */}
+        <View style={styles.mainSegmentWrapper}>
+          <View style={styles.segmentShadow} />
+          <View style={styles.mainSegment}>
+            {/* Home Tab */}
             <Pressable
-              key={tab.key}
-              style={styles.tabButton}
-              onPress={() => onTabPress(tab.key)}
+              style={styles.segmentTab}
+              onPress={() => onTabPress("Home")}
             >
-              <Ionicons
-                name={(isActive ? tab.activeIcon : tab.icon) as any}
-                size={24}
-                color={isActive ? homeColors.orangeActive : homeColors.mutedText}
+              <Image
+                source={homeIcon}
+                style={[
+                  styles.tabIcon,
+                  { tintColor: activeTab === "Home" ? "#FF5500" : "#48484A" }
+                ]}
+                contentFit="contain"
               />
               <Text
                 style={[
                   styles.tabLabel,
-                  isActive && styles.tabLabelActive,
+                  { color: activeTab === "Home" ? "#FF5500" : "#48484A" }
                 ]}
               >
-                {tab.label}
+                Home
               </Text>
             </Pressable>
-          );
-        })}
+
+            {/* Settings Tab (Renamed from Progress) */}
+            <Pressable
+              style={styles.segmentTab}
+              onPress={() => onTabPress("Settings")}
+            >
+              <Image
+                source={settingsIcon}
+                style={[
+                  styles.tabIcon,
+                  { tintColor: activeTab === "Settings" ? "#FF5500" : "#48484A" }
+                ]}
+                contentFit="contain"
+              />
+              <Text
+                style={[
+                  styles.tabLabel,
+                  { color: activeTab === "Settings" ? "#FF5500" : "#48484A" }
+                ]}
+              >
+                Settings
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+
+        {/* Separated Store Tab */}
+        <View style={styles.storeSegmentWrapper}>
+          <View style={styles.circleShadow} />
+          <Pressable
+            style={styles.storeCircle}
+            onPress={() => onTabPress("Store")}
+          >
+            <Image
+              source={storeIcon}
+              style={[
+                styles.tabIcon,
+                { tintColor: activeTab === "Store" ? "#1C1C1E" : "#48484A" }
+              ]}
+              contentFit="contain"
+            />
+            <Text
+              style={[
+                styles.tabLabel,
+                { color: activeTab === "Store" ? "#1C1C1E" : "#48484A" }
+              ]}
+            >
+              Store
+            </Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -67,66 +93,88 @@ export function BottomNav({ activeTab, onTabPress }: BottomNavProps) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: homeColors.white,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: homeColors.bottomNavBorder,
-    shadowColor: homeColors.bottomNavShadow,
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 8,
-    paddingBottom: 8,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "transparent",
+    paddingHorizontal: 16,
+    paddingBottom: 40, // Generous safe area for floating effect
+    paddingTop: 10,
+    alignItems: "center",
+    zIndex: 100,
   },
   navBar: {
     flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "space-around",
-    paddingHorizontal: spacing.s,
-    paddingTop: spacing.xs,
-    height: 64,
+    alignItems: "center",
+    gap: 14,
+    justifyContent: "center",
   },
-  tabButton: {
+  mainSegmentWrapper: {
+    width: 186, // Increased width for better visibility and presence
+    position: "relative",
+    paddingBottom: 4,
+  },
+  segmentShadow: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 4,
+    bottom: 0,
+    backgroundColor: "rgba(0,0,0,0.2)", // Darkened shadow for better visibility
+    borderRadius: 33,
+  },
+  mainSegment: {
+    flexDirection: "row",
+    backgroundColor: homeColors.white,
+    borderRadius: 33,
+    height: 66,
     alignItems: "center",
     justifyContent: "center",
-    flex: 1,
+    gap: 18, // Improved spacing
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.04)",
+  },
+  segmentTab: {
+    width: 72, // Wider tab buttons
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 1,
+  },
+  storeSegmentWrapper: {
+    width: 66,
+    height: 66,
+    position: "relative",
+    paddingBottom: 6, // Accommodate deeper shadow
+  },
+  circleShadow: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 6, // 6px depth for stronger physical feel
+    bottom: 0,
+    backgroundColor: "#A0CBF5", // Deeper blue for prominent elevation
+    borderRadius: 33,
+  },
+  storeCircle: {
+    width: 66,
+    height: 66,
+    backgroundColor: "#DCEEFF",
+    borderRadius: 33,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 1,
+    borderWidth: 1,
+    borderColor: "rgba(178,217,255,1)",
+  },
+  tabIcon: {
+    width: 20,
+    height: 20,
   },
   tabLabel: {
-    fontSize: 11,
-    fontFamily: typography.fonts.inter.medium,
-    fontWeight: "500",
-    color: homeColors.mutedText,
-    marginTop: 2,
-  },
-  tabLabelActive: {
-    color: homeColors.orangeActive,
+    fontSize: 10,
     fontFamily: typography.fonts.inter.semiBold,
-    fontWeight: "600",
-  },
-  storeButtonWrapper: {
-    alignItems: "center",
-    flex: 1,
-    marginTop: -20,
-  },
-  storeButton: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: homeColors.cream,
-    borderWidth: 2,
-    borderColor: homeColors.storeBorder,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: homeColors.storeShadow,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 4,
-  },
-  storeLabel: {
-    fontSize: 11,
-    fontFamily: typography.fonts.inter.medium,
-    fontWeight: "500",
-    color: homeColors.mutedText,
-    marginTop: 4,
+    marginTop: 0,
   },
 });

@@ -83,7 +83,7 @@ export function HomeScreen() {
   );
 
   const handleTabPress = useCallback((tab: string) => {
-    if (tab === "Progress") {
+    if (tab === "Settings") {
       navigation.navigate("Settings");
       return;
     }
