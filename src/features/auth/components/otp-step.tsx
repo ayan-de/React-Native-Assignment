@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
+import { Button } from "@/components/ui/button";
 import type { OtpStepProps } from "../types";
 import { loginStyles as styles } from "../styles/login.styles";
 import { OtpInput } from "./otp-input";
@@ -30,14 +31,11 @@ export function OtpStep({
       </TouchableOpacity>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.ctaButton, !isOtpComplete && styles.ctaButtonDisabled]}
+        <Button
+          title="Verify"
           onPress={onVerify}
           disabled={!isOtpComplete}
-          activeOpacity={0.85}
-        >
-          <Text style={styles.ctaLabel}>Verify</Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );

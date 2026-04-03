@@ -1,16 +1,20 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Image } from "expo-image";
-import { Ionicons } from "@expo/vector-icons";
-import { colors } from "@/theme/colors";
 import { AuthStackParamList } from "@/navigation/types";
 import companies from "@/mock-data/companies.json";
 import { welcomeAvatar } from "@/assets";
 import { ReadyLogo } from "@/components/ui/ready-logo";
+import { Button } from "@/components/ui/button";
+import { spacing } from "@/theme/spacing";
+import { typography } from "@/theme/typography";
 import { welcomeStyles as styles, LOGO_POSITIONS } from "../styles/welcome.styles";
 
-type WelcomeNavigationProp = NativeStackNavigationProp<AuthStackParamList, "Welcome">;
+type WelcomeNavigationProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  "Welcome"
+>;
 
 export function WelcomeScreen() {
   const navigation = useNavigation<WelcomeNavigationProp>();
@@ -52,18 +56,13 @@ export function WelcomeScreen() {
       </View>
 
       <View style={styles.bottomSection}>
-        <TouchableOpacity
-          style={styles.ctaButton}
+        <Button
+          title="Get Started"
           onPress={() => navigation.navigate("Login")}
-          activeOpacity={0.85}
-        >
-          <Ionicons
-            name="checkmark-circle"
-            size={20}
-            color={colors.textInverse}
-          />
-          <Text style={styles.ctaLabel}>Get Started</Text>
-        </TouchableOpacity>
+          iconName="checkmark-circle"
+          borderRadius={spacing.m}
+          fontSize={typography.sizes.l}
+        />
 
         <Text style={styles.termsText}>
           By continuing, you acknowledge agreeing to our terms of service and

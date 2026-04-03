@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
+import { Button } from "@/components/ui/button";
 import type { PhoneStepProps } from "../types";
 import { loginStyles as styles } from "../styles/login.styles";
 import { PhoneInput } from "./phone-input";
@@ -16,13 +17,7 @@ export function PhoneStep({ phone, onPhoneChange, error, onSubmit }: PhoneStepPr
       <PhoneInput value={phone} onChangeText={onPhoneChange} error={error} />
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.ctaButton}
-          onPress={onSubmit}
-          activeOpacity={0.85}
-        >
-          <Text style={styles.ctaLabel}>Get OTP</Text>
-        </TouchableOpacity>
+        <Button title="Get OTP" onPress={onSubmit} />
       </View>
     </View>
   );
