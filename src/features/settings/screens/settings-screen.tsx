@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: spacing.m,
+    paddingTop: spacing.xl,
     height: 62,
     gap: spacing.m,
   },
