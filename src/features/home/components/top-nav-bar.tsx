@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
+import { Image } from "expo-image";
 import { typography } from "@/theme/typography";
 import { homeColors } from "../constants";
 
@@ -6,13 +7,24 @@ export function TopNavBar() {
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>Ready!</Text>
-      <View style={styles.streakContainer}>
-        <View style={styles.streakBg} />
-        <View style={styles.streakPill}>
-          <Text style={styles.streakNumber}>8</Text>
-          <View style={styles.lightningIcon}>
-            <Text style={styles.lightning}>⚡</Text>
+      <View style={styles.rightSection}>
+        <View style={styles.streakContainer}>
+          <View style={styles.streakBg} />
+          <View style={styles.streakPill}>
+            <Image
+              source={require("../../../assets/lightning.png")}
+              style={styles.lightningIcon}
+              cachePolicy="memory-disk"
+            />
+            <Text style={styles.streakNumber}>8</Text>
           </View>
+        </View>
+        <View style={styles.menuPill}>
+          <Image
+            source={require("../../../assets/menu.png")}
+            style={styles.menuIcon}
+            cachePolicy="memory-disk"
+          />
         </View>
       </View>
     </View>
@@ -72,10 +84,27 @@ const styles = StyleSheet.create({
     color: homeColors.white,
   },
   lightningIcon: {
-    marginLeft: 2,
+    width: 14,
+    height: 14,
+    marginRight: 2,
   },
-  lightning: {
-    fontSize: 12,
-    color: homeColors.white,
+  rightSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  menuIcon: {
+    width: 18,
+    height: 18,
+  },
+  menuPill: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#F0F0F5",
+    borderRadius: 14,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    height: 28,
   },
 });
