@@ -23,12 +23,18 @@ export function TopNavBar() {
           </View>
         </View>
 
-        <View style={styles.menuPill}>
-          <Image
-            source={require("../../../assets/menu.png")}
-            style={styles.menuIcon}
-            cachePolicy="memory-disk"
-          />
+        {/* Elevated Menu Pill */}
+        <View style={styles.menuContainer}>
+          {/* Shadow Layer */}
+          <View style={styles.menuShadow} />
+          {/* Surface Layer */}
+          <View style={styles.menuPill}>
+            <Image
+              source={require("../../../assets/menu.png")}
+              style={styles.menuIcon}
+              cachePolicy="memory-disk"
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -91,6 +97,19 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
   },
+  menuContainer: {
+    position: "relative",
+    paddingBottom: 4,
+  },
+  menuShadow: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 4,
+    bottom: 0,
+    backgroundColor: "#D1D1D6",
+    borderRadius: 14,
+  },
   menuPill: {
     flexDirection: "row",
     alignItems: "center",
@@ -100,5 +119,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 4,
     height: 28,
+    minWidth: 36,
   },
 });
