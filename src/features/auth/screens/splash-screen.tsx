@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "@/navigation/types";
+import { ReadyLogo } from "@/components/ui/ready-logo";
 import { splashStyles as styles } from "../styles/splash.styles";
 
 type SplashNavigationProp = NativeStackNavigationProp<AuthStackParamList, "Splash">;
@@ -25,12 +26,7 @@ export function SplashScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Text style={styles.readyText}>Ready</Text>
-        <View style={styles.aiBadge}>
-          <Text style={styles.aiText}>AI</Text>
-        </View>
-      </View>
+      <ReadyLogo size="large" />
     </View>
   );
 }

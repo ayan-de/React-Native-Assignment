@@ -7,6 +7,7 @@ import { colors } from "@/theme/colors";
 import { AuthStackParamList } from "@/navigation/types";
 import companies from "@/mock-data/companies.json";
 import { welcomeAvatar } from "@/assets";
+import { ReadyLogo } from "@/components/ui/ready-logo";
 import { welcomeStyles as styles, LOGO_POSITIONS } from "../styles/welcome.styles";
 
 type WelcomeNavigationProp = NativeStackNavigationProp<AuthStackParamList, "Welcome">;
@@ -16,11 +17,8 @@ export function WelcomeScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Text style={styles.readyText}>Ready</Text>
-        <View style={styles.aiBadge}>
-          <Text style={styles.aiText}>AI</Text>
-        </View>
+      <View style={styles.logoWrapper}>
+        <ReadyLogo size="medium" />
       </View>
 
       <View style={styles.centerContainer}>

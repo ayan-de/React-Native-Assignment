@@ -11,33 +11,11 @@ export const welcomeStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  logoContainer: {
+  logoWrapper: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: spacing.xxs,
     marginTop: 78,
-  },
-  readyText: {
-    fontSize: 36,
-    fontFamily: typography.fonts.inter.bold,
-    letterSpacing: -0.02 * 36,
-    color: colors.primary,
-  },
-  aiBadge: {
-    paddingHorizontal: 3,
-    paddingVertical: spacing.xxs + 1,
-    backgroundColor: colors.textPrimary,
-    borderRadius: 7,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  aiText: {
-    fontSize: 24,
-    fontFamily: typography.fonts.inter.bold,
-    lineHeight: 31,
-    letterSpacing: -0.01 * 24,
-    color: colors.textInverse,
   },
   centerContainer: {
     flex: 1,
