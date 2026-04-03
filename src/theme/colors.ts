@@ -14,6 +14,7 @@ export const palette = {
   orange50: "#F97316",
   orange60: "#EA580C",
   orange70: "#C2410C",
+  orange80: "#9A3412",
 
   // Greens (used on Feedback / Highlights screens)
   green10: "#F0FDF4",
@@ -51,6 +52,9 @@ export const colors = {
   primary: palette.orange50,
   primaryLight: palette.orange10,
   primaryDark: palette.orange60,
+  primaryGradientStart: palette.orange50,
+  primaryGradientEnd: palette.orange60,
+  primaryShadow: palette.orange70,
 
   // Text
   textPrimary: palette.gray90,

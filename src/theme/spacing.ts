@@ -20,7 +20,7 @@ export const spacing = {
   screenPadding: 20,
   cardPadding: 16,
   cardRadius: 16,
-  buttonRadius: 24,
+  buttonRadius: 12,
   inputRadius: 12,
   avatarSize: 56,
 } as const;
