@@ -1,5 +1,6 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { typography } from "@/theme/typography";
 import { homeColors } from "../constants";
 
@@ -8,7 +9,11 @@ export function CourseSwitcher() {
     <Pressable style={styles.container}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <Text style={styles.mascot}>🐊</Text>
+          <Image
+            source={require("../../../assets/croco-mascot-frame.png")}
+            style={styles.mascot}
+            cachePolicy="memory-disk"
+          />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.subtitle}>
@@ -56,7 +61,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   mascot: {
-    fontSize: 18,
+    width: 28,
+    height: 28,
   },
   textContainer: {
     flex: 1,
