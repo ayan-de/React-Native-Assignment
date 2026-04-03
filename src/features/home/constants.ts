@@ -1,0 +1,32 @@
+export const homeColors = {
+  cream: "#FFF6D9",
+  goldShadow: "rgba(191,156,38,1)",
+  white: "#FFFFFF",
+  mutedText: "#48484A",
+  darkText: "#1C1C1E",
+  greenStreakLight: "#F5F5F8",
+  greenStreak: "#57D997",
+  greenStreakShadow: "rgba(19,191,105,1)",
+  orangeActive: "#FF7800",
+  checkmarkGreen: "#57D997",
+  bottomNavBorder: "#F3F3F8",
+  bottomNavShadow: "rgba(229,229,234,1)",
+  storeIcon: "#B2D9FF",
+  storeBorder: "#B2D9FF",
+  storeShadow: "rgba(178,217,255,1)",
+  promoText: "#BF9C26",
+  notDoneGray: "#D1D1D6",
+  notDoneShadow: "rgba(142,142,147,1)",
+  upNextShadow: "rgba(193,148,0,1)",
+};
+
+export const companyLogos: Record<string, number> = {
+  phonepe: require("../../assets/companies/phonepe-logo.png"),
+  amazon: require("../../assets/companies/amazon-logo.png"),
+  google: require("../../assets/companies/google-logo.png"),
+  microsoft: require("../../assets/companies/microsoft-logo.png"),
+  meta: require("../../assets/companies/meta-logo.png"),
+  apple: require("../../assets/companies/apple-logo.png"),
+  zomato: require("../../assets/companies/zomato-logo.png"),
+  swiggy: require("../../assets/companies/swiggy-logo.png"),
+};

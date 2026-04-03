@@ -4,9 +4,109 @@
     "questionNumber": 1,
     "companyId": "1",
     "companyName": "PhonePe",
-    "companyLogoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/PhonePe_Logo.svg/512px-PhonePe_Logo.svg.png",
+    "companyLogoKey": "phonepe",
     "text": "API latency is variable & app is sluggish. How do you design UI safely?",
     "durationMinutes": 2,
-    "completedTodayCount": 2312
+    "completedTodayCount": 2312,
+    "state": "upnext"
+  },
+  {
+    "id": "q2",
+    "questionNumber": 2,
+    "companyId": "2",
+    "companyName": "Amazon",
+    "companyLogoKey": "amazon",
+    "text": "Design a rate limiter for a distributed system.",
+    "durationMinutes": 2,
+    "completedTodayCount": 1845,
+    "state": "not-done"
+  },
+  {
+    "id": "q3",
+    "questionNumber": 3,
+    "companyId": "1",
+    "companyName": "PhonePe",
+    "companyLogoKey": "phonepe",
+    "text": "How would you handle offline-first architecture for payments?",
+    "durationMinutes": 2,
+    "completedTodayCount": 2312,
+    "state": "not-done"
+  },
+  {
+    "id": "q4",
+    "questionNumber": 4,
+    "companyId": "3",
+    "companyName": "Google",
+    "companyLogoKey": "google",
+    "text": "Design a system to handle billions of search queries efficiently.",
+    "durationMinutes": 2,
+    "completedTodayCount": 3102,
+    "state": "not-done"
+  },
+  {
+    "id": "q5",
+    "questionNumber": 5,
+    "companyId": "4",
+    "companyName": "Microsoft",
+    "companyLogoKey": "microsoft",
+    "text": "How would you design a real-time collaboration system like Teams?",
+    "durationMinutes": 2,
+    "completedTodayCount": 1567,
+    "state": "not-done"
+  },
+  {
+    "id": "q6",
+    "questionNumber": 6,
+    "companyId": "5",
+    "companyName": "Meta",
+    "companyLogoKey": "meta",
+    "text": "Design a news feed algorithm that scales to billions of users.",
+    "durationMinutes": 2,
+    "completedTodayCount": 2789,
+    "state": "not-done"
+  },
+  {
+    "id": "q7",
+    "questionNumber": 7,
+    "companyId": "2",
+    "companyName": "Amazon",
+    "companyLogoKey": "amazon",
+    "text": "How do you ensure exactly-once delivery in a messaging system?",
+    "durationMinutes": 2,
+    "completedTodayCount": 1934,
+    "state": "not-done"
+  },
+  {
+    "id": "q8",
+    "questionNumber": 8,
+    "companyId": "5",
+    "companyName": "Meta",
+    "companyLogoKey": "meta",
+    "text": "Design an efficient content caching strategy for Instagram.",
+    "durationMinutes": 2,
+    "completedTodayCount": 2156,
+    "state": "not-done"
+  },
+  {
+    "id": "q9",
+    "questionNumber": 9,
+    "companyId": "4",
+    "companyName": "Microsoft",
+    "companyLogoKey": "microsoft",
+    "text": "How would you architect a multi-tenant SaaS platform?",
+    "durationMinutes": 2,
+    "completedTodayCount": 1345,
+    "state": "not-done"
+  },
+  {
+    "id": "q10",
+    "questionNumber": 10,
+    "companyId": "3",
+    "companyName": "Google",
+    "companyLogoKey": "google",
+    "text": "Design a global load balancer that handles traffic spikes gracefully.",
+    "durationMinutes": 2,
+    "completedTodayCount": 2567,
+    "state": "not-done"
   }
 ]

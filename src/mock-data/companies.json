@@ -2,6 +2,49 @@
   {
     "id": "1",
     "name": "PhonePe",
+    "logoKey": "phonepe",
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/PhonePe_Logo.svg/512px-PhonePe_Logo.svg.png"
+  },
+  {
+    "id": "2",
+    "name": "Amazon",
+    "logoKey": "amazon",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/512px-Amazon_logo.svg.png"
+  },
+  {
+    "id": "3",
+    "name": "Google",
+    "logoKey": "google",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/512px-Google_2015_logo.svg.png"
+  },
+  {
+    "id": "4",
+    "name": "Microsoft",
+    "logoKey": "microsoft",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/512px-Microsoft_logo_%282012%29.svg.png"
+  },
+  {
+    "id": "5",
+    "name": "Meta",
+    "logoKey": "meta",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Meta_Platforms_Inc._logo.svg/512px-Meta_Platforms_Inc._logo.svg.png"
+  },
+  {
+    "id": "6",
+    "name": "Apple",
+    "logoKey": "apple",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/512px-Apple_logo_black.svg.png"
+  },
+  {
+    "id": "7",
+    "name": "Zomato",
+    "logoKey": "zomato",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Zomato_logo.svg/512px-Zomato_logo.svg.png"
+  },
+  {
+    "id": "8",
+    "name": "Swiggy",
+    "logoKey": "swiggy",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Swiggy_logo.svg/512px-Swiggy_logo.svg.png"
   }
 ]
