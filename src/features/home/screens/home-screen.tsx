@@ -83,8 +83,12 @@ export function HomeScreen() {
   );
 
   const handleTabPress = useCallback((tab: string) => {
+    if (tab === "Progress") {
+      navigation.navigate("Settings");
+      return;
+    }
     setActiveTab(tab as HomeTab);
-  }, []);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>

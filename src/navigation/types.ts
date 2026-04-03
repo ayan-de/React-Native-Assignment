@@ -17,6 +17,7 @@ export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
   Main: NavigatorScreenParams<MainTabParamList>;
   SessionResult: { questionId: string };
+  Settings: undefined;
 };
 
 declare global {

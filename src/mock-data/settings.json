@@ -1,0 +1,174 @@
+{
+  "streak": {
+    "currentStreak": 3,
+    "maxStreak": 10
+  },
+  "calendarMonth": "MARCH 2025",
+  "calendarWeeks": [
+    {
+      "days": [
+        {
+          "day": 24,
+          "state": "none"
+        },
+        {
+          "day": 25,
+          "state": "active"
+        },
+        {
+          "day": 26,
+          "state": "active"
+        },
+        {
+          "day": 27,
+          "state": "none"
+        },
+        {
+          "day": 28,
+          "state": "none"
+        },
+        {
+          "day": 1,
+          "state": "none"
+        },
+        {
+          "day": 2,
+          "state": "none"
+        }
+      ]
+    },
+    {
+      "days": [
+        {
+          "day": 3,
+          "state": "active"
+        },
+        {
+          "day": 4,
+          "state": "missed"
+        },
+        {
+          "day": 5,
+          "state": "active"
+        },
+        {
+          "day": 6,
+          "state": "none"
+        },
+        {
+          "day": 7,
+          "state": "none"
+        },
+        {
+          "day": 8,
+          "state": "none"
+        },
+        {
+          "day": 9,
+          "state": "none"
+        }
+      ]
+    },
+    {
+      "days": [
+        {
+          "day": 10,
+          "state": "missed"
+        },
+        {
+          "day": 11,
+          "state": "active"
+        },
+        {
+          "day": 12,
+          "state": "none"
+        },
+        {
+          "day": 13,
+          "state": "none"
+        },
+        {
+          "day": 14,
+          "state": "none"
+        },
+        {
+          "day": 15,
+          "state": "none"
+        },
+        {
+          "day": 16,
+          "state": "none"
+        }
+      ]
+    },
+    {
+      "days": [
+        {
+          "day": 17,
+          "state": "active"
+        },
+        {
+          "day": 18,
+          "state": "today"
+        },
+        {
+          "day": 19,
+          "state": "none"
+        },
+        {
+          "day": 20,
+          "state": "none"
+        },
+        {
+          "day": 21,
+          "state": "none"
+        },
+        {
+          "day": 22,
+          "state": "none"
+        },
+        {
+          "day": 23,
+          "state": "none"
+        }
+      ]
+    },
+    {
+      "days": [
+        {
+          "day": 24,
+          "state": "active"
+        },
+        {
+          "day": 25,
+          "state": "none"
+        },
+        {
+          "day": 26,
+          "state": "none"
+        },
+        {
+          "day": 27,
+          "state": "none"
+        },
+        {
+          "day": 28,
+          "state": "none"
+        },
+        {
+          "day": 29,
+          "state": "none"
+        },
+        {
+          "day": 30,
+          "state": "none"
+        }
+      ]
+    }
+  ],
+  "phoneNumber": "+91 9608184703",
+  "learningSince": "August 17, 2025",
+  "trialPrice": "₹1",
+  "trialMonthlyPrice": "₹299/month",
+  "appVersion": "v2.14.2"
+}
