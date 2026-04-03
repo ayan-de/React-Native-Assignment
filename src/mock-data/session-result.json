@@ -20,9 +20,12 @@
     ]
   },
   "keyMoments": [
-    { "id": "k1", "timestamp": "00:45", "description": "Introduced the concept of graceful degradation early on.", "type": "positive" },
-    { "id": "k2", "timestamp": "01:23", "description": "Paused to think about retry mechanisms and exponential backoff.", "type": "neutral" },
-    { "id": "k3", "timestamp": "02:10", "description": "Confidently explained skeleton vs spinner trade-offs with real examples.", "type": "positive" }
+    { "id": "k1", "timestamp": "00:45", "description": "Introduced the concept of graceful degradation early on, showing structured problem decomposition.", "type": "positive" },
+    { "id": "k2", "timestamp": "01:23", "description": "Paused to think about retry mechanisms and exponential backoff strategies.", "type": "neutral" },
+    { "id": "k3", "timestamp": "02:10", "description": "Confidently explained skeleton vs spinner trade-offs with real product examples.", "type": "positive" },
+    { "id": "k4", "timestamp": "03:05", "description": "Discussed stale-while-revalidate pattern for API response caching effectively.", "type": "positive" },
+    { "id": "k5", "timestamp": "04:12", "description": "Clearly articulated trade-offs between consistency and availability in distributed systems.", "type": "positive" }
   ],
-  "audioDurationSeconds": 312
+  "audioDurationSeconds": 312,
+  "audioProgressPercent": 41
 }

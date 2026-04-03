@@ -31,4 +31,5 @@ export interface SessionResult {
   smartSummary: SmartSummary;
   keyMoments: KeyMoment[];
   audioDurationSeconds: number;
+  audioProgressPercent: number;
 }

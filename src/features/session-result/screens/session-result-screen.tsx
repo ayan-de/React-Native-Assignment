@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -38,6 +38,21 @@ const feedbackColors = {
   divider: "#EFEFF4",
   companySubtitle: "#EFEFF4",
   white: "#FFFFFF",
+};
+
+const highlightColors = {
+  playerBg: "#FFF0E3",
+  playBtnBg: "#FFFFFF",
+  playIcon: "#CD5800",
+  progressBg: "#FFCEA0",
+  progressFillTop: "#FF6D00",
+  progressFillBottom: "#FF3900",
+  progressBorder: "#CD5800",
+  audioLabel: "#CD5800",
+  audioTime: "#6C6C70",
+  highlightTitle: "#0093FA",
+  highlightDescription: "#48484A",
+  dividerLine: "#EFEFF4",
 };
 
 export function SessionResultScreen() {
@@ -191,19 +206,71 @@ function SmartSummaryContent({ result }: { result: SessionResult }) {
 }
 
 function KeyMomentsContent({ result }: { result: SessionResult }) {
+  const elapsedSec = Math.round(
+    (result.audioProgressPercent / 100) * result.audioDurationSeconds
+  );
+  const elapsedMin = Math.floor(elapsedSec / 60);
+  const elapsedRemSec = elapsedSec % 60;
+  const totalMin = Math.floor(result.audioDurationSeconds / 60);
+  const totalRemSec = result.audioDurationSeconds % 60;
+
+  const formatTime = (m: number, s: number) =>
+    `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+
   return (
-    <View style={styles.tabContent}>
-      {result.keyMoments.map((moment) => (
-        <View key={moment.id} style={styles.momentRow}>
-          <View style={styles.momentTimestamp}>
-            <Text style={styles.momentTimeText}>{moment.timestamp}</Text>
+    <ScrollView
+      style={styles.highlightsScroll}
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={styles.audioPlayerCard}>
+        <View style={styles.audioPlayerRow}>
+          <View style={styles.playButton}>
+            <Ionicons
+              name="play"
+              size={20}
+              color={highlightColors.playIcon}
+            />
           </View>
-          <View style={styles.momentContent}>
-            <Text style={styles.momentDescription}>{moment.description}</Text>
+          <View style={styles.audioTextSection}>
+            <Text style={styles.audioLabel}>Mock Interview</Text>
+            <View style={styles.progressBarBg}>
+              <View
+                style={[
+                  styles.progressBarFill,
+                  { width: `${result.audioProgressPercent}%` },
+                ]}
+              />
+            </View>
+            <View style={styles.audioTimeRow}>
+              <Text style={styles.audioTimeText}>
+                {formatTime(elapsedMin, elapsedRemSec)}
+              </Text>
+              <Text style={styles.audioTimeText}>
+                {formatTime(totalMin, totalRemSec)}
+              </Text>
+            </View>
           </View>
         </View>
-      ))}
-    </View>
+      </View>
+
+      <View style={styles.highlightsList}>
+        {result.keyMoments.map((moment, index) => (
+          <View key={moment.id}>
+            <View style={styles.highlightItem}>
+              <Text style={styles.highlightTitle}>
+                {moment.timestamp}
+              </Text>
+              <Text style={styles.highlightDescription}>
+                {moment.description}
+              </Text>
+            </View>
+            {index < result.keyMoments.length - 1 && (
+              <View style={styles.highlightDivider} />
+            )}
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
@@ -394,32 +461,88 @@ const styles = StyleSheet.create({
     backgroundColor: feedbackColors.divider,
     marginVertical: spacing.xs,
   },
-  momentRow: {
+  highlightsScroll: {
+    flex: 1,
+  },
+  audioPlayerCard: {
+    backgroundColor: highlightColors.playerBg,
+    borderRadius: spacing.cardRadius,
+    padding: spacing.m,
+  },
+  audioPlayerRow: {
     flexDirection: "row",
-    alignItems: "flex-start",
-    gap: spacing.s,
-    paddingVertical: spacing.xs,
+    alignItems: "center",
+    gap: spacing.m,
   },
-  momentTimestamp: {
-    backgroundColor: feedbackColors.screenBg,
-    paddingHorizontal: spacing.xs,
-    paddingVertical: spacing.xxxs,
-    borderRadius: 6,
+  playButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: highlightColors.playBtnBg,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  momentTimeText: {
+  audioTextSection: {
+    flex: 1,
+    gap: spacing.xs,
+  },
+  audioLabel: {
+    fontSize: 14,
+    fontFamily: typography.fonts.inter.semiBold,
+    fontWeight: "600",
+    color: highlightColors.audioLabel,
+  },
+  progressBarBg: {
+    height: 6,
+    backgroundColor: highlightColors.progressBg,
+    borderRadius: spacing.cardRadius,
+    borderTopWidth: 1,
+    borderTopColor: "rgba(0, 0, 0, 0.15)",
+    overflow: "hidden",
+  },
+  progressBarFill: {
+    height: "100%",
+    backgroundColor: "#FF5300",
+    borderBottomWidth: 1,
+    borderBottomColor: highlightColors.progressBorder,
+    borderRadius: spacing.cardRadius,
+  },
+  audioTimeRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  audioTimeText: {
     fontSize: 12,
     fontFamily: typography.fonts.inter.semiBold,
     fontWeight: "600",
-    color: feedbackColors.tabActiveText,
+    color: highlightColors.audioTime,
   },
-  momentContent: {
-    flex: 1,
+  highlightsList: {
+    gap: 0,
+    marginTop: spacing.m,
   },
-  momentDescription: {
+  highlightItem: {
+    gap: spacing.xxs,
+    paddingVertical: spacing.xs,
+  },
+  highlightTitle: {
+    fontSize: 14,
+    fontFamily: typography.fonts.inter.semiBold,
+    fontWeight: "600",
+    color: highlightColors.highlightTitle,
+    lineHeight: 19,
+  },
+  highlightDescription: {
     fontSize: 14,
     fontFamily: typography.fonts.inter.medium,
     fontWeight: "500",
-    color: feedbackColors.bulletText,
+    color: highlightColors.highlightDescription,
     lineHeight: 19,
+  },
+  highlightDivider: {
+    height: 8,
+    justifyContent: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: highlightColors.dividerLine,
   },
 });
