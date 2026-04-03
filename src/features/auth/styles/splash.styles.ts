@@ -18,7 +18,6 @@ export const splashStyles = StyleSheet.create({
   readyText: {
     fontSize: 47,
     fontFamily: typography.fonts.inter.bold,
-    fontWeight: "800",
     letterSpacing: -0.02 * 47,
     color: colors.primary,
   },
@@ -33,7 +32,6 @@ export const splashStyles = StyleSheet.create({
   aiText: {
     fontSize: 31,
     fontFamily: typography.fonts.inter.bold,
-    fontWeight: "800",
     lineHeight: 40,
     letterSpacing: -0.01 * 31,
     color: colors.textInverse,

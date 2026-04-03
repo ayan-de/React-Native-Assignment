@@ -21,7 +21,6 @@ export const welcomeStyles = StyleSheet.create({
   readyText: {
     fontSize: 36,
     fontFamily: typography.fonts.inter.bold,
-    fontWeight: "800",
     letterSpacing: -0.02 * 36,
     color: colors.primary,
   },
@@ -36,7 +35,6 @@ export const welcomeStyles = StyleSheet.create({
   aiText: {
     fontSize: 24,
     fontFamily: typography.fonts.inter.bold,
-    fontWeight: "800",
     lineHeight: 31,
     letterSpacing: -0.01 * 24,
     color: colors.textInverse,
@@ -100,7 +98,6 @@ export const welcomeStyles = StyleSheet.create({
   ctaLabel: {
     fontSize: typography.sizes.l,
     fontFamily: typography.fonts.inter.medium,
-    fontWeight: "500",
     lineHeight: 24,
     letterSpacing: -0.01 * typography.sizes.l,
     color: colors.textInverse,
@@ -108,7 +105,6 @@ export const welcomeStyles = StyleSheet.create({
   termsText: {
     fontSize: typography.sizes.s,
     fontFamily: typography.fonts.inter.normal,
-    fontWeight: "400",
     lineHeight: 16,
     textAlign: "center",
     letterSpacing: -0.01 * typography.sizes.s,

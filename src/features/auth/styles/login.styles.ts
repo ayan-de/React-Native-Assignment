@@ -20,7 +20,6 @@ export const loginStyles = StyleSheet.create({
   title: {
     fontSize: typography.sizes.xxl,
     fontFamily: typography.fonts.inter.semiBold,
-    fontWeight: "600",
     color: colors.textPrimary,
     marginTop: spacing.l,
   },
@@ -30,7 +29,6 @@ export const loginStyles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     fontFamily: typography.fonts.inter.normal,
-    fontWeight: "400",
     lineHeight: 20,
     letterSpacing: -0.01 * 14,
     color: colors.textSecondary,
@@ -43,7 +41,6 @@ export const loginStyles = StyleSheet.create({
   inputLabel: {
     fontSize: typography.sizes.s,
     fontFamily: typography.fonts.inter.medium,
-    fontWeight: "500",
     lineHeight: 16,
     letterSpacing: -0.01 * typography.sizes.s,
     color: colors.textSecondary,
@@ -70,7 +67,6 @@ export const loginStyles = StyleSheet.create({
   regionCodeText: {
     fontSize: 15,
     fontFamily: typography.fonts.inter.normal,
-    fontWeight: "400",
     lineHeight: 22,
     letterSpacing: -0.01 * 15,
     color: colors.textPrimary,
@@ -84,7 +80,6 @@ export const loginStyles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     fontFamily: typography.fonts.inter.normal,
-    fontWeight: "400",
     lineHeight: 22,
     letterSpacing: -0.01 * 15,
     color: colors.textPrimary,
@@ -93,14 +88,12 @@ export const loginStyles = StyleSheet.create({
   errorText: {
     fontSize: typography.sizes.xs,
     fontFamily: typography.fonts.inter.normal,
-    fontWeight: "400",
     color: colors.error,
     marginTop: spacing.xxs,
   },
   hintText: {
     fontSize: typography.sizes.xs,
     fontFamily: typography.fonts.inter.normal,
-    fontWeight: "400",
     color: colors.textDisabled,
     marginTop: spacing.xxs,
   },
@@ -119,7 +112,6 @@ export const loginStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: typography.sizes.xxxl,
     fontFamily: typography.fonts.inter.semiBold,
-    fontWeight: "600",
     color: colors.textPrimary,
     backgroundColor: colors.background,
   },
@@ -132,7 +124,6 @@ export const loginStyles = StyleSheet.create({
   resendText: {
     fontSize: typography.sizes.m,
     fontFamily: typography.fonts.inter.medium,
-    fontWeight: "500",
     color: colors.primary,
   },
   buttonContainer: {
@@ -164,7 +155,6 @@ export const loginStyles = StyleSheet.create({
   ctaLabel: {
     fontSize: typography.sizes.m,
     fontFamily: typography.fonts.inter.medium,
-    fontWeight: "500",
     lineHeight: 20,
     letterSpacing: -0.01 * typography.sizes.m,
     color: colors.textInverse,
