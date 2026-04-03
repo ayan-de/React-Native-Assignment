@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { colors } from "@/theme/colors";
 import { spacing } from "@/theme/spacing";
 import { typography } from "@/theme/typography";
@@ -16,6 +17,7 @@ interface ButtonProps {
   onPress: () => void;
   disabled?: boolean;
   iconName?: React.ComponentProps<typeof Ionicons>["name"];
+  iconSource?: any;
   borderRadius?: number;
   fontSize?: number;
 }
@@ -25,6 +27,7 @@ export function Button({
   onPress,
   disabled = false,
   iconName,
+  iconSource,
   borderRadius = spacing.buttonRadius,
   fontSize = typography.sizes.m,
 }: ButtonProps) {
@@ -68,7 +71,15 @@ export function Button({
           end={{ x: 0.5, y: 1 }}
           style={[styles.gradient, { borderRadius }]}
         >
-          {iconName && (
+          {iconSource && (
+            <Image
+              source={iconSource}
+              style={styles.iconImage}
+              contentFit="contain"
+            />
+          )}
+
+          {iconName && !iconSource && (
             <Ionicons
               name={iconName}
               size={22}
@@ -111,6 +122,11 @@ const styles = StyleSheet.create({
     minHeight: 56,
   },
   icon: {
+    marginRight: spacing.xs,
+  },
+  iconImage: {
+    width: 24,
+    height: 24,
     marginRight: spacing.xs,
   },
   label: {

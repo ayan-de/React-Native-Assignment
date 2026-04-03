@@ -56,7 +56,8 @@ export const welcomeStyles = StyleSheet.create({
   },
   bottomSection: {
     paddingHorizontal: spacing.xl,
-    paddingBottom: 50,
+    paddingBottom: 80,
+    gap: 40,
   },
   termsText: {
     fontSize: typography.sizes.s,

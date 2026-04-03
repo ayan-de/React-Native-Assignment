@@ -4,7 +4,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Image } from "expo-image";
 import { AuthStackParamList } from "@/navigation/types";
 import companies from "@/mock-data/companies.json";
-import { welcomeAvatar } from "@/assets";
+import { welcomeAvatar, letsGoIcon } from "@/assets";
 import { ReadyLogo } from "@/components/ui/ready-logo";
 import { Button } from "@/components/ui/button";
 import { spacing } from "@/theme/spacing";
@@ -57,9 +57,9 @@ export function WelcomeScreen() {
 
       <View style={styles.bottomSection}>
         <Button
-          title="Get Started"
+          title="Let's go"
           onPress={() => navigation.navigate("Login")}
-          iconName="checkmark-circle"
+          iconSource={letsGoIcon}
           borderRadius={spacing.m}
           fontSize={typography.sizes.l}
         />
